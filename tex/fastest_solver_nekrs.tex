@@ -1,0 +1,21 @@
+\begin{table}\small
+\centering
+\begin{tabular}{llrrrr}
+\toprule
+             Case            &                                     Fastest Solver                 & $T_S$          &  Iterations &  $\dfrac{T_D}{T_S}$ & $\dfrac{\left(T_{crs}\right)_D}{\left(T_{crs}\right)_S}$\\
+\midrule
+Kershaw ($\varepsilon=1   $) & $1^{st}$-Cheb, $\lambda_{min}^{opt}$, RAS(2,2) &           0.09 &        8 &     1.75                & 1.13     \\
+Kershaw ($\varepsilon=0.3 $) & $1^{st}$-Cheb, $\lambda_{min}^{opt}$, RAS(5,5) &           0.67 &       28 &     1.35                & 1.79     \\
+Kershaw ($\varepsilon=0.05$) &        $4^{th}_{opt}$-Cheb, RAS(12,0)          &           2.40 &       88 &     1.75         & 2.31     \\
+\hline
+146 pebble                        &         $4^{th}_{opt}$-Cheb, RAS(4,4)     &           0.15 &        5.3 &     1.17         & 1.21  \\
+67 pebble                         &        $4^{th}_{opt}$-Cheb, RAS(12,0)     &           0.37 &       12.5 &     1.81  & 2.41  \\
+1568 pebble                       &            $4^{th}$-Cheb, ASM(12,0)       &           0.14 &        3 &     1.27    & 2.13  \\
+\bottomrule
+\end{tabular}
+\caption{\small \label{tab:fastest_solver_nekrs}Solver configuration with the fastest time to solution.
+  %The Chebyshev order used on the down/up leg of the V-cycle are given as $(\nu_1, \nu_2)$, respectively.
+  %Smoothing with 0th-order Chebyshev is equivalent to applying the identity matrix, or omitting the smoothing entirely.
+  %The $p$-multigrid schedule is denoted by the second set of parentheses.
+}
+\end{table}
