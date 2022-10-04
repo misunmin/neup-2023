@@ -1,0 +1,4 @@
+git pull
+git add tex/*.tex
+git commit -m 'pff'
+git push

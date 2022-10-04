@@ -1,0 +1,70 @@
+\noindent
+{\large\bf Solver Advances for High-Order Discretizations}
+
+
+% J. Lottes, Optimal polynomial smoothers for multigrid v-cycles, preprint arXiv:2202.08830, (2022).
+%
+% @article{lottes22,
+%   title={Optimal polynomial smoothers for multigrid V-cycles},
+%   author={Lottes, James},
+%   journal={preprint arXiv:2202.08830},
+%   year={2022}
+% }
+
+
+
+We have made progress in improving solution times for spectral element and
+high-order FEM Poisson solves using $p$-multigrid (pMG) with Chebyshev-accelerated
+Schwarz smoothing.  In a recent article, Lottes \cite{lottes22} demonstrated
+the benefits of using 4th-kind Chebyshev polynomials for multigrid smoothing.
+A particular feature of Chebyshev smoothing is that it is better able to
+suppress low-wavenumber error than standard smoothing strategies.  By 
+reducing the number of outer GMRES iterations, these gains in pMG
+take pressure off of the coarse-grid solver, which is expensive for
+large-scale simulations, particularly at exascale and beyond.  In a forthcoming
+article, we demonstrate that omitting post-smoothing and using pre-smoothing
+with 4th-kind Chebyshev polynomials of degree $2k$ is often superior to pre-
+and post-smoothing with degree $k$.  
+
+Table \cite{tab:cheb} summarizes the gains with this strategy for several CEED
+and NekRS test cases with spectral elements of order $N=7$.  Kershaw is a
+Poisson solve in the unit cube where $\epsilon=1$ implies that the mesh is a
+uniform array of $E=36^3$ elements ($n=16$M), while $\epsilon \longrightarrow
+0$ induces an increasing level of mesh distortion and anisotropy. The other
+three cases are Navier-Stokes solutions in pebble-bed geometries that are
+relevant to DOE's Nuclear Energy Advanced Modeling and Simulation (NEAMS)
+project.  The number of elements for $S=67$, 146, and 1568 pebbles are
+respectively $E = 122$K ($n$=42M), 62K ($n$=21M), and 524K ($n$=180M).  The
+table presents the method that was found to be the fastest for each test case.
+(NekRS will automatically select this method.)  The options include 1st-kind
+and 4th-kind Chebyshev smoothing, with additive Schwarz (ASM) or restricted
+additive Schwarz (RAS), and with polynomial smoothing of degrees $(k_d,k_u)$ on
+the respective downward and upward legs of the pMG V-cycle.   $T_S$
+is the solve time and $T_D$ is the solve time for the default
+NekRS solver.  Also indicated are the gains in the coarse-grid solve times.
+The results show that the one-sided smoothing is not always the fastest
+(which is supported by our analysis), but that it does pay off for challenging
+mesh configurations.  Overall, the gains are anywhere from 17 to 81\% over the
+Chebyshev-accelerated Schwarz smoothing cycle that is the current default in
+NekRS.
+
+
+\begin{table}\small
+\centering
+\begin{tabular}{llrrrr}
+\toprule
+Case  & Fastest Solver  & $T_S$  &  Iterations &  $\dfrac{T_D}{T_S}$ & $\dfrac{\left(T_{crs}\right)_D}{\left(T_{crs}\right)_S}$\\
+\midrule
+Kershaw ($\varepsilon=1   $) & $1^{st}$-Cheb, $\lambda_{min}^{opt}$, RAS(2,2) &           0.09 &        8 &     1.75                & 1.13     \\
+Kershaw ($\varepsilon=0.3 $) & $1^{st}$-Cheb, $\lambda_{min}^{opt}$, RAS(5,5) &           0.67 &       28 &     1.35                & 1.79     \\
+Kershaw ($\varepsilon=0.05$) &        $4^{th}_{opt}$-Cheb, RAS(12,0)          &           2.40 &       88 &     1.75         & 2.31     \\
+\hline
+67 pebble                         &        $4^{th}_{opt}$-Cheb, RAS(12,0)     &           0.37 &       12.5 &     1.81  & 2.41  \\
+146 pebble                        &         $4^{th}_{opt}$-Cheb, RAS(4,4)     &           0.15 &        5.3 &     1.17         & 1.21  \\
+1568 pebble                       &            $4^{th}$-Cheb, ASM(12,0)       &           0.14 &        3 &     1.27    & 2.13  \\
+\bottomrule
+\end{tabular}
+\caption{\small \label{tab:cheb}
+Solver configuration with the fastest time to solution.
+}
+\end{table}

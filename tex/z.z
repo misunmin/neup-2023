@@ -1,0 +1,87 @@
+
+
+\medskip
+\begin{center}
+{\large\bf Scaling Performance on Crusher, Polaris, Perlmutter, Summit 
+ \footnote{NOTE: This document will be part of section in CEED milestone report.}}
+\end{center}
+
+\medskip
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure*}[t]
+  \begin{center}
+     \includegraphics[width=0.33\textwidth]{./figs/strong-scale-rod1717-10-p-rank-gmpi-2.png}
+     %\hspace{-2em}
+     \includegraphics[width=0.33\textwidth]{./figs/strong-scale-rod1717-10-n-p-rank-gmpi-2.png}
+     \\
+     \includegraphics[width=0.33\textwidth]{./figs/strong-scale-eff-rod1717-10-p-rank-gmpi-2.png}
+     %\hspace{-2em}
+     \includegraphics[width=0.33\textwidth]{./figs/strong-scale-eff-rod1717-10-n-p-rank-gmpi-2.png}
+     \\
+     \includegraphics[width=0.33\textwidth]{./figs/strong-scale-dofs-rod1717-10-t-step-gmpi-2.png}
+     %\hspace{-2em}
+     \includegraphics[width=0.33\textwidth]{./figs/strong-scale-dofs-rod1717-10-n-p-rank-gmpi-2.png}
+     \\
+     \includegraphics[width=0.33\textwidth]{./figs/strong-scale-makef-rod1717-10-p-rank-gmpi-2.png}
+     %\hspace{-2em}
+     \includegraphics[width=0.33\textwidth]{./figs/strong-scale-crs-rod1717-10-p-rank-gmpi-2.png}
+   \caption{\label{perf170}Strong-scaling on Crusher and Summit.}
+  \end{center}
+\end{figure*}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\medskip
+\begin{center}
+{\large\bf Scaling Performance on Crusher , Polaris, Perlmutter, ThetaGPU, and Summit
+\end{center}
+
+
+\medskip
+We consider ExaSMR's 17$\times$17 rod-bundle geometry and extend the domain in
+streamwise direction with 10, 17, 170 and 6340 layers keeping the mesh density
+same. In this report, we present the 170-layer case, which corresponds to
+471 thousand spectral elements of order $N=7$, for a total of 
+$n=.47$M $\times 7^3 = 161$M grid points.
+
+
+Figure \ref{perf170} shows several scaling metrics for this case across these
+platforms.  In the top row, left, we have the classic strong-scaling plot of
+time-per-step ($t_{\step}$), in seconds, versus number of MPI ranks, $P$.  (We run
+one MPI rank per V100 or A100 on the NVIDIA-based nodes, and one MPI rank per
+GCD on the AMD MI250X nodes.)   For early run results (shown here) on Crusher,
+there was a 2$\times$ slow down if $P$ was not a multiple of 8, but that problem
+is no longer manifest with the current system software.  The A100-based platforms,
+Perlmutter and Polaris, show the best {\em per rank} performance across all
+the platforms provided that they are using GPUDirect with Slingshot 10.
+(Slingshot 11, newly installed on Perlmutter, yields a 1.4--1.5$\times$ improvement
+in MPI bandwidth but for reasons yet unresolved yields a slow-down for NekRS at
+certain nodecounts.)   
+
+An important figure of merit is $n_{0.8}$, which is the value of $n/P$ at which
+the simulation realizes 80\% parallel efficiency.  From the second row, right,
+we see that $n_{0.8}=2.5$M for Perlmutter/Polaris and 3M for Crusher.
+For Polaris without GPUDirect we find $n_{0.8}=4.5$M.
+The plot on row 3, left, indicates that a remarkably small $t_{step}$ value of
+0.015 seconds per step is realizable on Polaris, albeit at 25\% efficiency.
+
+The plot on the last row, left, shows that the time in the compute-intensive,
+communication-minimal advection update strong-scales quite well, as would be
+expected.  Aside from the anomalous behavior of (earlier-OS-based) Crusher
+for $P$ not a multiple of 8, the curves for the more modern architectures 
+collapse to nearly the same performance.  This kernel is sustaing 3--4 TFLOPS
+on these architectures (without communication).
+  In contrast, the last row, right, shows the performance for the
+communication-intensive coarse grid solve, which is performed using Hypre
+on the host CPUs.  Here, both Crusher and Polaris show relatively poor
+performance at small values of $n/P$.  We remark also that using Summit's
+{\em large memory nodes} generated a distinct (and worse) performance curve
+different than the standard 16GB nodes.
+
+
+
+
