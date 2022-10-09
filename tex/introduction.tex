@@ -2,16 +2,16 @@
 \parindent 0in
 \parskip 0.1in
 
-{\bf Title: Advanced Reactor Thermal-Hydraulics Analysis}
+{\bf Title:  Reduced Order Modeling of heat and fluid flow: Multi-scale modeling of advanced reactors to enable faster deployment }
 
-{\bf Technical work scope identification: SN-1}
+{\bf Technical work scope identification: M\&S 1 }
 
 {\bf PIs:}
 
 Paul Fischer \\
 Department of Computer Science \\
 Department of Mechanical Science \& Engineering \\
-University of Illinois, Urbana-Champaign \\[2ex]
+University of Illinois, Urbana-Champaign \\
 
 Elia Merzari \\
 Department of Nuclear Engineering \\
@@ -25,19 +25,31 @@ Sections:
 
 
 
-\section{Summary - 5 pages}
+\section{Project Summary}
 
-\begin{itemize}
-\item
-A summary of the proposed project, including a description of the project and a
-{\em clear explanation of its importance and relevance to the objectives in Part I
-Section A.}
-\item
-Major deliverables and outcomes the R\&D will produce.
-\item
-Timeframe of execution: October 1, 2023--September 30, 2026
-\end{itemize}
+% \begin{itemize}
+% \item
+% A summary of the proposed project, including a description of the project and a
+% {\em clear explanation of its importance and relevance to the objectives in Part I
+% Section A.}
+% \item
+% Major deliverables and outcomes the R\&D will produce.
+% \item
+% Timeframe of execution: October 1, 2023--September 30, 2026
+% \end{itemize}
 
+We seek \textbf{to develop novel multi-scale algorithmic approaches for the simulation of heat and fluid flow in advanced reactors}. The methods, which leverage recent advances in hardware and reduced order modeling approaches, will enable fast-running simulations of vastly accelerated speed, while maintaining accuracy comparable to high-fidelity methods such Large Eddy Simulation and Direct Numerical Simulation. These methods will allow to perform parameter sweeps to assess uncertainty and develop closures. They will also enable, for the first time to perform high fidelity simulation of transients.
+
+Several  advanced reactors concepts are currently being pursued in the United States, with dozens of companies proposing unique designs. Crucial for their deployment is the analysis of  reactor transients (e.g., a protected loss of flow): an essential part of the evaluation of thermal margins and the overall safety case.  In most cases, licensing will be pursued with established methods, based on lumped parameter system codes (e.g., SAM \cite{hu2021}).  However, these codes require adequate closures, that are typically obtained empirically and require extensive validation. Furthermore, the methods are characterized by high level of uncertainty when dealing with complex three-dimensional turbulent flow, especially in the presence of large enclosures, mixed convection and thermal stratification. High-fidelity simulation on the other hand remains prohibitively expensive, especially for large parameter sweeps or for the simulation of nuclear transients, and data remains sparse.
+
+Moreover, as the advanced reactor industry matures and moves past demonstration projects, economics will become a larger and larger driver. This will very likely push vendors to seek to maximize the economic potential (e.g., higher power output, higher temperature for process heat, reduced capital cost), especially as new materials and fuels are introduced. These goals will benefit from radically improved methods to assess thermal margins that push toward high fidelity. \textbf{This proposal seeks to develop radically novel algorithmic approaches to the simulation of advanced reactors, with an unprecedented level of fidelity, enabling transformative design approaches and improved economics.} In particular we aim to:
+\begin{enumerate}
+\item \textit{Enable the simulation of large parameter sweeps using reduced order models developed over a subset of the parameter space.} This approach will allow to assess uncertainty of system-level approaches and to develop closures.
+\item \textit{Enable the simulation of accelerate simulation of transients } This approach will allow to assess lower resolution approaches in conjunction with experimental data for the simulation of transient.
+\end{enumerate}
+As a demonstration application we choose the simulation of Sodium Fast Reactor fuel assemblies under steady-state and transient conditions. \textit{ We emphasize that the methods developed will apply to a broad range of advanced reactor applications.}
+
+\section{Project Motivation and Technical Objectives}
 
 We propose to leverage current hardware, software, and algorithmic developments
 to radically enhance thermal-hydraulic analysis capabilities.  The work will
@@ -74,7 +86,7 @@ models} (ROMs) using some type of Galerkin projection or in combination with
 machine learning (ML).   In either case, the idea is to leverage high-fidelity
 data generated on pre-exascale or exascale platforms to allow reactor designers
 to rapidly explore thermal-hydraulics responses over a significant parametric
-space.   
+space.
 
 The software development to bring this vision to fruition is well underway.
 On the exascale side, Nek5000/RS is capable of strong-scaling to tens-of-thousands
@@ -90,8 +102,8 @@ On the modeling side...  cite: \\
 .Elia ROMs \\
 .recent papers supported under NEUP. \\
 .other authors
- 
-In addition to ROMs, there has been significant progress in applying 
+
+In addition to ROMs, there has been significant progress in applying
 ML to fluid simulation problems, including: \\
 Vinuesa, others, ...
 
@@ -114,7 +126,7 @@ New things:
 
 ROM / pMOR
 
-compressed I/O 
+compressed I/O
 
 
 
@@ -304,7 +316,7 @@ Agreement has been read, understood, and the terms and conditions are accepted.
 Further, submission of a NSUF supported Pre-Application and a Full Application
 indicates the applicant will comply and agree to the terms and conditions of
 the User Agreement. Upon award of an Page 25 of 107
- 
+
 Fiscal Year 2023 Consolidated Innovative Nuclear Research PART IV NSUF
 supported project, the User Agreement must be signed before activities will
 begin on the project. Failure to sign the non-negotiable User Agreement within
