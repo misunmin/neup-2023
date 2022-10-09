@@ -1,4 +1,3 @@
-
 \parindent 0in
 \parskip 0.1in
 
@@ -6,15 +5,24 @@
 
 {\bf Technical work scope identification: M\&S 1 }
 
-{\bf PI:}
+{\bf PIs:}
+
 Paul Fischer \\
 Department of Computer Science \\
 Department of Mechanical Science \& Engineering \\
 University of Illinois, Urbana-Champaign \\
 
-{\bf co-PIs:}
-Elia Merzari, Pennsylvania State University, \\
-Dillon Shaver, Argonne National Laboratory \\
+Elia Merzari \\
+Department of Nuclear Engineering \\
+Pennsylvania State University, University Park
+
+Sections:
+\begin{itemize}
+\item{Summary - 5 pages}
+\item{Benefit of Collaboration - 4 pages}
+\end{itemize}
+
+
 
 \section{Project Summary}
 
@@ -44,17 +52,17 @@ deployment is the analysis of  reactor transients (e.g., a protected loss of
 flow): an essential part of the evaluation of thermal margins and the overall
 safety case.  In most cases, licensing will be pursued with established
 methods, based on lumped parameter system codes (e.g., SAM \cite{hu2021}).
-However, these codes require adequate closures, that are typically obtained
-empirically and require extensive validation. Furthermore, the methods are
+However, these codes require adequate closures that are typically obtained
+empirically and require extensive validation. Furthermore, these methods are
 characterized by high level of uncertainty when dealing with complex
 three-dimensional turbulent flow, especially in the presence of large
-enclosures, mixed convection and thermal stratification. High-fidelity
+enclosures, mixed convection, and thermal stratification. High-fidelity
 simulation on the other hand remains prohibitively expensive, especially for
 large parameter sweeps or for the simulation of nuclear transients, and data
 remains sparse.
 
 Moreover, as the advanced reactor industry matures and moves past demonstration
-projects, economics will become a larger and larger driver. This will very
+projects, economics will become a larger and larger driver. This pressure will
 likely push vendors to seek to maximize the economic potential (e.g., higher
 power output, higher temperature for process heat, reduced capital cost),
 especially as new materials and fuels are introduced. These goals will benefit
@@ -62,7 +70,7 @@ from radically improved methods to assess thermal margins that push toward high
 fidelity. \textbf{This proposal seeks to develop radically novel algorithmic
 approaches to the simulation of advanced reactors, with an unprecedented level
 of fidelity, enabling transformative design approaches and improved economics.}
-In particular we aim to:
+In particular we aim to: 
 \begin{enumerate}
 %
    \item \textit{Enable the simulation of large parameter sweeps using reduced
@@ -70,14 +78,14 @@ In particular we aim to:
    will allow to assess uncertainty of system-level approaches and to develop
    closures.
 %
-   \item \textit{Enable the simulation of accelerate simulation of transients }
+   \item \textit{Enable the accelerated simulation of transients.}
    This approach will allow to assess lower resolution approaches in conjunction
-   with experimental data for the simulation of transient.
+   with experimental data for the simulation of transient.  
 \end{enumerate}
 As a demonstration application we choose the simulation of Sodium Fast Reactor
-fuel assemblies under steady-state and transient conditions. \textit{ We
+(SFR) fuel assemblies under steady-state and transient conditions. \textit{We
 emphasize that the methods developed will apply to a broad range of advanced
-reactor applications.} An overview of the project is provided in Figure~\ref{f:01}.
+reactor applications.}
 
 \begin{figure}[h!]
     \centering
@@ -86,19 +94,16 @@ reactor applications.} An overview of the project is provided in Figure~\ref{f:0
     \label{f:01}
 \end{figure}
 
-
 \section{Project Motivation and Technical Objectives}
 
-We propose to leverage current hardware, software, and algorithmic developments
-to radically enhance thermal-hydraulic analysis capabilities.  The work will
+We propose to leverage ongoing hardware, software, and algorithmic developments
+to dramatically enhance thermal-hydraulic analysis capabilities.  The work will
 entail combining advanced simulations on DOE's exascale computing platforms
 with modern data analysis methods that effectively compress these
 first-principle data to efficient exploratory tools based on reduced-order
-models (ROMs) and machine learning (ML).
+models (ROMs).
 
-Recent breakthroughs in computational hardware and software have the potential
-to significantly improve predictive capabilities for reactor thermal hydraulics
-(TH).  The Department of Energy is in the process of standing up three exascale
+The Department of Energy is in the process of standing up three exascale
 computing platforms: Frontier at ORNL, El Capitan at LLNL, and Aurora at ANL.
 We have recently demonstrated that it is possible to simulate a single flow
 through time for the thermal-hydraulics of a full pebble-bed reactor core
@@ -109,6 +114,23 @@ acheivement as it involves a quarter-trillion degrees-of-freedom, executing a
 so it will be possible to explore multiple configurations in this space within
 a single annual allocation, which will make it possible to consider parameter
 exploration that is critical for analysis and design.
+
+The software that enables this achievement is {\em NekRS}, which is the
+GPU-oriented version of the high-order spectral element code, Nek5000.  
+NekRS has been developed as part of DOE's Center for Efficient Exascale
+Discretizations and sustains $\approx$ 0.5--1.0 TFLOPS ($10^{12}$ floating
+point operations per second) per MPI rank on current-generation pre-exascale
+platforms Summit (ORNL), Crusher (ORNL), and Polaris (ANL).  It is a highly
+efficient code that realizes 2--4 TFLOPS/rank on key kernels and 80\% 
+parallel efficiency with about 2M grid points per rank.  Consequently,
+a 50B grid-point problem could effectively use $P$=25,000 GPUs (or GCDs
+in the case of Frontier or tiles in the case of Aurora), which is a substantial
+fraction of DOEs forthcoming exascale platoforms.  Execution times on these
+platforms can be anticipated to remain at $\approx$ 0.1--0.3 seconds per
+step, even with larger problems running on the full systems.
+
+
+
 
 PICTURE OF PEBBLE BED HERE
 
@@ -200,8 +222,10 @@ accomplish the proposed scope.
 R\&D/NSUF Pre-Applications (Mandatory except for IRPs) Due Date: October 11, 2022 at 7:00 p.m. ET
 
 
+{\bf
 Pre-Applications must include a list of publications
 that resulted from previous NSUF supported projects.
+}
 
 
 \section{Pre-Application}
@@ -230,6 +254,7 @@ Pre-Application and Full Application.
 
 • Name of PI(s) and associated organization(s).
 
+{\bf
 • A summary of the proposed project, including a description of the project and
 a clear explanation of its importance and relevance to the objectives in Part I
 Section A.
@@ -240,6 +265,7 @@ Section A.
 
 • Timeframe for execution of proposed project (specify the time period for R\&D,
 one-, two-, or three-year period or up to seven years for NSUF).
+}
 
 • Specific facilities and equipment access requirements (for the NSUF access portion only).
 
@@ -360,3 +386,4 @@ supported project, the User Agreement must be signed before activities will
 begin on the project. Failure to sign the non-negotiable User Agreement within
 30 days of receipt of the User Agreement may result in cancellation of an
 awarded project.
+

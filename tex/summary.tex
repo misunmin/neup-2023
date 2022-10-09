@@ -1,0 +1,61 @@
+
+
+\subsection{High-Fidelity Simulations}
+
+Nek5000/RS is a high-scalable open-source code designed for the simulation
+of turbulence in thermal-fluids problems.   The 
+
+USUAL Nek5000/SEM stuff here.
+Mention the term HPC
+
+
+Most recently, NekRS, a GPU variant of Nek5000, has been developed to
+exploit the DOE's forthcoming exascale platforms, all of which use
+accelerator-based nodes where the majority of the compute power derives
+from GPUs or similar fine-grained SIMD parallel architectures.
+  What NekRS does w.r.t. performance
+Because it uses the same algorithms as Nek5000, NekRS inherits
+all of the advantages of the SEM formulation, the advanced 
+time-stepping strategies, and the scalable linear solvers.
+In fact, many of the solvers in NekRS are currently more advanced
+than those in Nek5000.   Among these are recently-developed variants
+of $p$-multigrid with Chebyshev-accelerated Schwarz smoothers \cite{siam22a}.
+
+Show some scaling plots (Crusher, etc.)
+
+\subsection{Data-Driven Reduced-Order Models}
+
+(WHY ROM)
+While it is clear that NekRS will be capable of delivering fast turn-around
+for reactor-scale simulations on DOE's exascale platforms, the use of 
+such simulations for one-off determination of system behavior at a single
+parameter point does not constitute an efficient utilization of resources. 
+It far more effective from a design perspective if one can reliably explore
+parametric input/output relationships (e.g., Nusselt/Rayleigh-number in
+low-flow conditions) in the neighborhood of the parameter space for which
+the high-fidelity DNS or LES is performed.   Such a capability is precisely
+the goal of parametric model-order reduction (pMOR) which is typically based
+on reduced-order models (ROMs) of the high-fidelity DNS/LES (often referred
+to as full-order models, or FOMs).   
+
+ROMs are typically built by collecting snapshot fields of the FOM solution
+
+
+For unsteady turbulent flows, ROMs need to address two problems: 
+{\em (i), the reproduction problem} in which the 
+
+
+
+
+(HOW ROM)
+
+
+
+
+
+
+
+
+
+
+
