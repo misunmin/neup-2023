@@ -138,8 +138,8 @@ the full systems.
 core with 352625 pebbles.  The simulation comprised 51 billion gridpoints
 ($E$=99M spectral elements of order $p$=8).  On all of Summit (27648 NVIDIA
 V100 GPUs), this simulation requires 0.36 seconds per step and would complete a
-single flow-through time in just six hours. (Computation by Yu-Hsiang Lan,
-ANL/UIUC.)
+single flow-through time in just six hours \cite{sc22}. (Computation by
+Yu-Hsiang Lan, ANL/UIUC.)
 (right) NekRS strong-scaling on current-generation accelerator-based platforms:
 AMD-MI250X-based Crusher (OLCF),
 NVIDIA-V100-based Summit (OLCF),
@@ -180,45 +180,30 @@ We begin with the reproduction problem. The standard approach is to use
 $\approx 1000$ high-fidelity solution snapshots (i.e., full velocity/temperature
 fields) to extract $N$$\approx$20--200 basis functions through 
 proper-orthogonal decomposition (POD) or some other low-rank approximation
-approach.  Using these basis functions one can construct a small
-dynamical system from the governing Navier-Stokes and energy-transport
-equations that governs the unknown basis coefficients.  These systems,
-which are of size $N$, run extremely fast---on a laptop, it is possible
-to evolve tens-of-thousands of convective time units in a minute, far more than
-is feasible with the FOM, which is one of the reasons that ROMs are interesting
-for long-time transients.  Moreover, it is relatively easy to adjust equation
-parameters to have a nominal pMOR tool.  (Adjusting geometry is more
-challenging and one of the topics to be explored in the context of this
-project).
+approach.  These bases can be used to approximate solutions to the governing
+Navier-Stokes and energy-transport equations, from which one can extract a 
+low-dimensional dynamical system governing the unknown basis coefficients.  
+These systems, which are of size $N$, run extremely fast---in just a few
+minutes on a laptop it is possible to evolve tens-of-thousands of convective
+time units, much longer than feasible with a FOM, even on an exascale platform,
+which is one of the reasons that ROMs are interesting for long-time transients.
+Moreover, it is relatively easy to adjust equation parameters to have a nominal
+pMOR tool.  (Adjusting geometry is more challenging and one of the topics to be
+explored in the context of this project).
 
-There are several challenges to bring the preceding scenario to fruition.
+There are several challenges to bringing the preceding scenario to fruition.
 The first is to ensure that the ROM can effectively track the quantities
 of interest (QOIs) produced by the FOM, even at the same parameter point.
 This tracking is by no means assured, particularly for turbulent flows
 where energy is dissipated by small-scale structures that are generally
 absent from POD bases.  Several stabilization strategies are possible,
-such as 
+such as Leray regularization \cite{wang2012proper} or constrained coefficient
+evolution \cite{fick}.  Alternative approaches include modification of the
+approximation space as considered, for example, by Akkari {\em et al.} 
+\cite{akkari19}, who use a decomposition of modes that minimize the distance
+between the snapshots and the bases in respective $L^2$ and $\cH^1$ norms;
+by Khodkar {\em et al.} \cite{khodkar2019}, who derive bases from 
+Green's function approximations.  Under prior NEUP support, Kaneko 
+\cite{kaneko22a,kaneko22} developed an augmented-basis method (ABM) wherein  
 
-
-
-
-
-
-
-
-
-
-
-
-, the development of ROM
-
-
-
-
-
-
-
-
-NekROM, which is a software
-too
 
