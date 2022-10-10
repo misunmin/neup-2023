@@ -1,4 +1,4 @@
-name = fisc_merz 
+name = fisc_merz benefits
 
 pdf:
 	latexmk -pdf $(name)
