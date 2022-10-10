@@ -168,19 +168,19 @@ typically based on reduced-order models (ROMs) of the high-fidelity DNS/LES
 (often referred to as full-order models, or FOMs).   
 
 Under NEUP Award 18-15520 we have developed have developed a pMOR/ROM
-capability withing the Nek5000 framework that allows users to build ROMs and
+capability within the Nek5000 framework that allows users to build ROMs and
 perform parameter variation with these models.  The development of ROMs for
 unsteady (e.g., turbulent or transient) flows is still an open research topic.
 In broad terms, the process consists of two problems: {\em (i) the solution
 reproduction problem}, and {\em (ii) the parametric problem}.  To these, we add
-a third category that of interest to the current project: {\em (iii) evolution
+a third category of relevance to the current project: {\em (iii) evolution
 of long transients}.
 
 We begin with the reproduction problem. The standard approach is to use
 $\approx 1000$ high-fidelity solution snapshots (i.e., full velocity/temperature
 fields) to extract $N$$\approx$20--200 basis functions through 
 proper-orthogonal decomposition (POD) or some other low-rank approximation
-approach.  Using these basis functions one can construct a low-rank
+approach.  Using these basis functions one can construct a small
 dynamical system from the governing Navier-Stokes and energy-transport
 equations that governs the unknown basis coefficients.  These systems,
 which are of size $N$, run extremely fast---on a laptop, it is possible
