@@ -5,61 +5,131 @@ environment.   The first set of tasks will be to provide more seemless integrati
 between Nek5000/RS and NekROM.  Ideally, one should be able to generate a ROM
 on the fly.
 
-
-
 We propose the following tasks to realize a multiscale simulation
 capability for reactor analysis:
+
+\textbf{Thrust 1: Data Generation.} We perform high fidelity simulations of the flow in SFR fuel assemblies for a variety of conditions including a range of steady-state conditions and a loss-of-flow transient scenario.
 \begin{description}
-%
+\item{\em i.}
+Define benchmarks for SFR fuel assemblies. These will be used for validation.
+\item{\em ii.}
+Develop data to construct reduced order models of SFR fuel assemblies. This task will support Thrust 2.
+\item{\em iii.}
+Develop data to validate reduced order models for both transient and parameter sweeps. This Task will support Thrust 3.
+\end{description}
+
+\textbf{Thrust 2: Algorithmic development.} This is the core of the project.
+We seek to develop advanced ROM methods and their extension to multi-scale frameworks.
+\begin{description}
 \item{\em i.}
 Continued development of ROM closure models for increased robustness when
 simulating high Rayleigh/Reynolds flows.  This effort will build on the work of
 \cite{kaneko22a,kaneko22,tsai22a} to extract more accuracy and detail out of
 stabilized ROMs for turbulent flows.
-%
 \item{\em ii.}
 Identify strategies to equip the ROM for long-time transients.  While progress
 was demonstrated in \cite{kaneko20a}, more needs to be done to make the
 approach robust, particularly using alternative basis functions and error
 indicators.
-%
 \item{\em iii.}
 Develop multi-scale methods that couple ROMs with LES on a subset of
 the domain.  Principal challenges are to support general or
 parameterized inflow conditions for the ROM and to quantify relaxation
 distances over which small scale structures will evolve in the LES region
-near the ROM-LES interface.
-(These distances are often short in complex domains.)
-The goal will be to combine reactor-scale ROM simulations with localized
-detailed simulations in regions of interest.
-%
-\item{\em iv.}
+near the ROM-LES interface. The goal will be to combine reactor-scale ROM simulations with localized
+detailed simulations in regions of interest. This leverages past work on rod bundles and sub-channels, whose geometric properties have been exploited to maximize the use of small domain high-fidelity simulation to improve RANS results in a multi-scale fashion \cite{martinez2019a}.
+\end{description}%
+
+\textbf{Thrust 3: Validation and Demonstration.} In this thrust we validate and demonstrate the proposed methods.
+\begin{description}
+\item{\em i.}
 Validate the accelerated transient calculations with high-fidelity counterparts
 in an SFR rod-bundle at low-flow conditions.
-%
-\item{\em v.}
+\item{\em ii.}
 Perform ROM-based parameter sweeps and compare these to corresponding
 FOM results for validation.
-%
+\item{\em iii.}
+Demonstrate accelerate transient capability for cases that are currently not feasible.
 \end{description}
 
+\textbf{Major deliverables and Timetable of Activities}
 
+At the end of each year a report will be issued describing progress to date. Four major deliverables are expected out of this project as shown on Figure~\ref{fig:gantt}:
+
+\noindent \textbf{Thrust 1: Development of Transient High-resolution Benchmarks} (September 2024). We define at least three transient and parametric sweep benchmarks for Sodium Fast Reactors. We also provide initial simulation  with LES/DNS using the NEAMS code NekRS. This will be used to support Thrust 3.
+
+\noindent \textbf{Thrust 2: Preliminary Implementation of ROM-based Multiscale algorithms} (September 2025). Preliminary implementations are discussed. A comparison against nitial  benchmark problems is provided. Issues with the methods are highlighted as well as possible solutions.
+
+\noindent \textbf{Thrust 2/3: Final Implementation and Demonstration of ROM-based Multiscale algorithms} (September 2026). This milestone is the culmination of the project. Improvement implementations are discussed. We provide recommendations on how the methods are to be integrated within the NEAMS program.
+
+\noindent \textbf{Code release.} (September 2026). The production code is released in public repositories.
+
+%\begin{table}[tbhp]
+%\begin{center}
+%\caption{Timeline of proposal (in months)}
+%\centering
+%\label{tab:wbs}
+%\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+%\hline
+%\textbf{Months} & 1--6&  7--12 & 13--18 & 19--24 & 25--30 & 31--36 & 37--42 & 43--48 & 49--54 & 55--60  \\
+%\hline
+%\textbf{Task A} & x & x & x & x  & x  & x &   &   &   &  \\
+%\hline
+%\textbf{Task B} & x & x & x & x  & x  & x &  &   &   &  \\
+%\hline
+%\textbf{Task C} & x  & x & x & x  & x  & x &   &   &   &  \\
+%\hline
+%\textbf{Task D} & x  & x  & x  & x  & x  & x & x & x & x & x \\
+%\hline
+%\textbf{Task E} &   &   &   &   &  x  & x & x & x & x & x \\
+%\hline
+%\textbf{Task F} &   &   &   &    &  x  & x & x & x & x  & x  \\
+%\hline
+%\end{tabular}
+%\end{center}
+%\end{table}
+
+\begin{figure} [hbt]
+\centering
+\begin{ganttchart}[%Specs
+ x unit=0.6cm,
+ y unit title=0.5cm,
+ y unit chart=0.5cm,
+ vgrid,hgrid,
+ title height=1,
+%     title/.style={fill=none},
+ title label font=\bfseries\footnotesize,
+ bar/.style={fill=blue},
+ bar height=0.7,
+%   progress label text={},
+ group right shift=0,
+ group top shift=0.7,
+ group height=.3,
+ group peaks width={0.2},
+ inline]{1}{12}
+%labels
+\gantttitle[]{Fiscal Year}{12}    \\             % title 2
+\gantttitle{2024}{4}
+\gantttitle{2025}{4}
+\gantttitle{2026}{4}\\
+% Setting group if any
+\ganttgroup[inline=false]{Thrust 1}{1}{8} \\
+\ganttbar[inline=false]{1.i Development of benchmarks}{1}{4} \\
+\ganttbar[inline=false]{1.ii Data Generation to support Thrust 2 }{1}{8} \\
+\ganttbar[inline=false]{1.iii Data generation to support Thrust 3 }{1}{8} \\
+\ganttgroup[inline=false]{Thrust 2}{1}{10} \\
+\ganttbar[inline=false]{2.i Improved ROM closures }{1}{6} \\
+\ganttbar[inline=false]{2.ii ROM for transients}{3}{10}\\
+\ganttbar[inline=false]{2.iii Multi-scale methods}{3}{10} \\
+\ganttgroup[inline=false]{Thrust 3}{6}{12} \\
+\ganttbar[inline=false]{3.i Validation for transients }{6}{12} \\
+\ganttbar[inline=false]{3.ii Validation for parameter sweeps}{6}{12}\\
+\ganttbar[inline=false]{3.iii Demonstration}{9}{12} \\
+\ganttmilestone[inline=false]{Benchmarks}{4} \\
+\ganttmilestone[inline=false]{Preliminary implementation}{8} \\
+\ganttmilestone[inline=false]{Final implementation}{12} \\
+\ganttmilestone[inline=false]{Code release}{12}
+\end{ganttchart}
+\caption{Timeline of proposal by fiscal year} \label{fig:gantt}
+\end{figure}
 %-----------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
