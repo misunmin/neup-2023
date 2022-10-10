@@ -204,7 +204,7 @@ explored in the context of this project).
 There are several challenges to bringing the preceding scenario to fruition.
 The first is to ensure that the ROM can effectively track the quantities
 of interest (QOIs) produced by the FOM, even at the same parameter point.
-This tracking is by no means assured, particularly for turbulent flows
+This reproduction is by no means assured, particularly for turbulent flows
 where energy is dissipated by small-scale structures that are generally absent
 from POD bases.  Several stabilization strategies are possible, such as Leray
 regularization \cite{wang2012proper} or constrained coefficient evolution
@@ -217,29 +217,46 @@ functions approximations.
 augmented-basis method (ABM) wherein a set of standard POD basis functions,
 $\{\bz_i(\bx) \}$,  is augmented with a subset of their nonlinear interaction
 terms, $\{\bz_i \cdot \nabla \bz_j\}$.   
+  The success of the ABM approach is illustrated in the turbulent pipe flow
+examples of Fig. \ref{fig:abm}, which shows that standard POD Galerkin and
+Leray regularization can converge at lower Reynolds numbers $Re$ with a
+sufficient number of basis functions, $N$, but that the required number of
+basis functions rapidly increases with $Re$.  Given the $O(N^3)$ costs for the
+ROM, these methods appear to be limited to relatively low $Re$.  The ABM and
+the constrained approaches, however, perform much better because of their
+stability.
 
-The success of the ABM approach is illustrated in the turbulent pipe flow
-examples of Fig. \ref{fig:abm}, which shows that standard POD Galerkin
-and Leray regularization can converge at lower Reynolds numbers $Re$
-with a sufficient number of basis functions, $N$, but that the required
-number of basis functions rapidly increases with $Re$.  Given the $O(N^3)$
-costs for the ROM, these methods appear to be limited to relatively low
-$Re$.  The ABM and the constrained approaches, however, perform much better
-because of their stability.
+With a robust reproduction capability, the next step in pMOR is to ensure that
+the ROM can accurately predict the system behavior at other parameter points
+and, ideally, provide error indicators to assess the departure between the ROM
+and the FOM.  As a step toward pMOR for 3D reactor analysis, We explore
+error-indicated pMOR in depth for high Rayleigh-number two-dimensional slot
+convection in \cite{tsai22a} (work that was also supported under 18-15520).  
+By using a greedy algorithm, the error indicators allow one to optimize
+construction of a parametric map in which new FOMs are run wherever
+discrepancies between the ROM and FOM are deemed to be large.
+In \cite{tsai22a}, we also identify chaotic FOMs where certain QOIs are not
+reproducible either by a ROM or an FOM.
 
-\begin{figure}[t!] \centering
-    \includegraphics[width = 0.70\textwidth]{figs/kaneko_diss_pipe_pics.png}
-    \includegraphics[width = 0.70\textwidth]{figs/kaneko_diss_pipe_ubar.png}
+
+\begin{figure}[t] \centering
+{\setlength{\unitlength}{1.0in}
+ \begin{picture}(6.5,1.40)(0,0.05)
+ \put(-.08,0.15){\includegraphics[width = 0.24\textwidth]{figs/kaneko_diss_pipe_r10k.png}}
+ \put(1.75,0.00){\includegraphics[width = 0.70\textwidth]{figs/kaneko_diss_pipe_ubar.png}}
+\end{picture}}
 \caption{
-(top) Nek5000 DNS of turbulent pipe flow at $Re_D$=4000--10,000;
-(bottom) Mean velocity error in NekROM reproduction results for standard
-Galerkin POD ($L^2$-Glk, $H^1$-Glk), 
-Leray- and constrainted-based regularization
-($L^2$-Lry, $H^1$-Cst), and 
-ABM with three different subsets of the nonlinear terms
-($L^2$-Aug0 = $ \bz_0 \cdot \nabla \bz_j+ \bz_j \cdot \nabla \bz_0$,
-$L^2$-AugD = $ \bz_j \cdot \nabla \bz_j$,
-$L^2$-Aug0 $\bigcup$ $L^2$-AugD) \cite{kaneko22a,kaneko22}.
+{\bf (left)} 
+    Nek5000 DNS of turbulent pipe flow at $Re_D$=10,000;
+{\bf (right)}
+    Mean velocity error in ROM reproduction results for 
+    Galerkin POD ($L^2$-Glk, $H^1$-Glk), 
+    Leray- and constrainted-based regularization
+    ($L^2$-Lry, $H^1$-Cst), and 
+    ABM with three different subsets of the nonlinear terms
+    ($L^2$-Aug0=$\bz_0 \cdot \nabla \bz_j+ \bz_j \cdot \nabla \bz_0$,
+    $L^2$-AugD=$\bz_j \cdot \nabla \bz_j$,
+    $L^2$-AugC=$L^2$-Aug0 $\bigcup$ $L^2$-AugD) \cite{kaneko22a,kaneko22}.
 \label{fig:abm}}
 \end{figure}
 
