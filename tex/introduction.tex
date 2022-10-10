@@ -122,10 +122,9 @@ highly efficient code that realizes 2--4 TFLOPS-FP64/rank on key kernels and
 \ref{fig:pbr} can effectively use $P$=25,000 GPUs (or GCDs in the case of
 Frontier or tiles in the case of Aurora).  While such a calculation essentially
 fills all of Summit, it would use only a fraction of Frontier or Aurora.  On
-these platforms, we can anticipate running larger problems or running at
-multiple points in the reactor design space, where execution times can be
-anticipated to remain at $\approx$ 0.1--0.3 seconds per step even with larger
-problems running on the full systems.
+these platforms, we can anticipate running larger problems, or running at
+multiple points in the reactor design space, with execution times 
+remaining at $\approx$ 0.1--0.3 seconds per step.
 
 Like Nek5000, NekRS is based on high-order body-fitted spectral element
 discretizations that has minimal numerical dispersion and dissipation, which
@@ -177,7 +176,7 @@ is precisely the goal of parametric model-order reduction (pMOR), which is
 typically based on reduced-order models (ROMs) of the high-fidelity DNS/LES
 (often referred to as full-order models, or FOMs).   
 
-Under NEUP Award 18-15520, we have developed have developed NekROM to provide a
+Under NEUP Award 18-15520, we have developed NekROM to provide a
 pMOR/ROM capability within the Nek5000 framework that allows users to build
 ROMs and perform parameter variation with these models.  The development of
 ROMs for unsteady (e.g., turbulent or transient) flows is still an open
@@ -212,7 +211,7 @@ regularization \cite{wang2012proper} or constrained coefficient evolution
 \cite{fick18}.  Alternative approaches include modification of the approximation
 space.  For example \cite{akkari19} uses a decomposition of modes 
 into distinct sets minimizing the $L^2$ error (for accuracy) and the $\cH^1$
-error (for stability).  In \cite{khodkar2019} a basis is derived from Green's
+error (for stability).  In \cite{khodkar2019}, a basis is derived from Green's
 functions approximations.
    Under prior NEUP support, Kaneko \cite{kaneko22a,kaneko22} developed an
 augmented-basis method (ABM) wherein a set of standard POD basis functions,
@@ -225,7 +224,10 @@ sufficient number of basis functions, $N$, but that the required number of
 basis functions rapidly increases with $Re$.  Given the $O(N^3)$ costs for the
 ROM, these methods appear to be limited to relatively low $Re$.  The ABM and
 the constrained approaches, however, perform much better because of their
-stability.
+stability.    Turbulent kinetic energy plots show similar behavior to the
+mean velocity behavior of Fig. \ref{fig:abm}, but we find that the ABM
+can be overly dissipative at higher $Re$.  The mechanism for that anomalous
+behavior is under investigation.
 
 With a robust reproduction capability, the next step in pMOR is to ensure that
 the ROM can accurately predict the system behavior at other parameter points
