@@ -85,7 +85,7 @@ emphasize that the methods developed will apply to a broad range of advanced
 reactor applications.}
 
 \begin{figure}[t!] \centering
-    \includegraphics[width = 0.80\textwidth]{figs/overview.png}
+    \includegraphics[width = 0.70\textwidth]{figs/overview.png}
     \caption{Overview of Project with three thrusts: Data generation,
              algorithmic development and validation/demonstration.  \label{fig:sum}}
 \end{figure}
@@ -193,9 +193,9 @@ proper-orthogonal decomposition (POD) or some other low-rank approximation
 approach.  These bases can be used to approximate solutions to the governing
 Navier-Stokes and energy-transport equations, from which one can extract a 
 low-dimensional dynamical system governing the unknown basis coefficients.  
-These systems, which are of size $N$, run extremely fast---in just a few
+These systems, which are of size $N$, run extremely fast---{\bf in just a few
 minutes on a laptop it is possible to evolve tens-of-thousands of convective
-time units, much longer than feasible with a FOM, even on an exascale platform,
+time units,} much longer than feasible with a FOM, even on an exascale platform,
 which is one of the reasons that ROMs are interesting for long-time transients.
 Moreover, it is relatively easy to adjust equation parameters to have a nominal
 pMOR tool.  (Adjusting geometry is more challenging and one of the topics to be
@@ -208,7 +208,7 @@ This reproduction is by no means assured, particularly for turbulent flows
 where energy is dissipated by small-scale structures that are generally absent
 from POD bases.  Several stabilization strategies are possible, such as Leray
 regularization \cite{wang2012proper} or constrained coefficient evolution
-\cite{fick}.  Alternative approaches include modification of the approximation
+\cite{fick18}.  Alternative approaches include modification of the approximation
 space.  For example \cite{akkari19} uses a decomposition of modes that minimize
 into distinct sets minimizing the $L^2$ error (for accuracy) and the $\cH^1$
 error (for stability).  In \cite{khodkar2019} a basis is derived from Green's
@@ -229,9 +229,10 @@ stability.
 With a robust reproduction capability, the next step in pMOR is to ensure that
 the ROM can accurately predict the system behavior at other parameter points
 and, ideally, provide error indicators to assess the departure between the ROM
-and the FOM.  As a step toward pMOR for 3D reactor analysis, We explore
-error-indicated pMOR in depth for high Rayleigh-number two-dimensional slot
-convection in \cite{tsai22a} (work that was also supported under 18-15520).  
+and the FOM.  As a step toward pMOR for 3D reactor analysis, under prior NEUP
+support (18-15520),  we extended the error-estimators of \cite{fick18} to develop
+an error-indicated pMOR for high Rayleigh-number two-dimensional slot
+convection in \cite{tsai22a}. 
 By using a greedy algorithm, the error indicators allow one to optimize
 construction of a parametric map in which new FOMs are run wherever
 discrepancies between the ROM and FOM are deemed to be large.
