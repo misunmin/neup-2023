@@ -60,6 +60,18 @@ simulation on the other hand remains prohibitively expensive, especially for
 large parameter sweeps or for the simulation of nuclear transients, and data
 remains sparse.
 
+\begin{figure}[t!] \centering
+    \includegraphics[width = 0.80\textwidth]{figs/pbr_pair.png}
+    \caption{(left) NekRS turbulent flow simulation results for a full reactor
+core with 352625 pebbles.  The simulation comprised 51 billion gridpoints
+($E$=99M spectral elements of order $N$=8).  On all of Summit (27648 NVIDIA
+V100 GPUs), this simulation requires 0.36 seconds per step and would complete a
+single flow-through time in just six hours.
+(right)
+\label{fig:pbr}}
+\end{figure}
+
+
 Moreover, as the advanced reactor industry matures and moves past demonstration
 projects, economics will become a larger driver. This pressure will likely push
 vendors to seek to maximize the economic potential (e.g., higher power output,
