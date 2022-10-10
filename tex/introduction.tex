@@ -1,20 +1,24 @@
 \parindent 0in
 \parskip 0.1in
 
-{\bf Title:  Reduced Order Modeling of heat and fluid flow: Multi-scale
-modeling of advanced reactors to enable faster deployment}
+\begin{center}
+{\bf Reduced Order Modeling of Heat and Fluid Flow: \\ 
+Multi-Scale Modeling of Advanced Reactors to Enable Faster Deployment}
+\end{center}
 
 {\bf Technical work scope identification: M\&S 1 }
 
-{\bf PI:}
+{\bf PI: }\begin{minipage}[t]{5in}
 Paul Fischer \\
 Department of Computer Science \\
 Department of Mechanical Science \& Engineering \\
 University of Illinois, Urbana-Champaign \\
+\end{minipage}
 
-{\bf co-PIs:}
-Elia Merzari, Pennsylvania State University, \\
-Dillon Shaver, Argonne National Laboratory \\
+{\bf co-PIs: } \begin{minipage}[t]{5in}
+Elia Merzari, Pennsylvania State University \\
+Dillon Shaver, Argonne National Laboratory \\[-3ex]
+\end{minipage}
 
 \section{Project Summary}
 
@@ -39,7 +43,7 @@ allow to perform
 parameter sweeps to assess uncertainty and develop closures. They will also
 enable, for the first time, to perform high fidelity simulation of transients.
 
-Several  advanced reactors concepts are currently being pursued in the United
+Several  advanced reactor concepts are currently being pursued in the United
 States, with dozens of companies proposing unique designs. Crucial for their
 deployment is the analysis of  reactor transients (e.g., a protected loss of
 flow): an essential part of the evaluation of thermal margins and the overall
@@ -100,34 +104,40 @@ We illustrate the project overview in Fig. \ref{fig:sum}.
 \noindent
 {\bf High-Fidelity Simulations on DOE Leadership Computers.}
 The DOE is bringing several accelerator-based exascale platforms online,
-including Frontier at ORNL and Aurora at ANL.
-As illustrated in Fig. \ref{fig:pbr},
-we have demonstrated that it is possible to simulate a single flow
-through time for the thermal-hydraulics of a full pebble-bed reactor core
+including Frontier at ORNL and Aurora at ANL.  As illustrated in Fig.
+\ref{fig:pbr}, we have demonstrated that it is possible to simulate a single
+flow through time for the thermal-hydraulics of a full pebble-bed reactor core
 (352,000 pebbles) in just six hours of wall-clock time on ORNL's {\em
 pre}-exascale machine, Summit.   This is an significant acheivement as it
 involves updating a quarter-trillion degrees-of-freedom at $\approx$ 0.3
-seconds per step.  
-%This problem is relatively small for an exascale platform, on which it will be
-%possible to explore multiple configurations in this space within an  annual
-%allocation.  which will make it possible to consider parameter exploration
-%that is critical for analysis and design.
-The software that enables this achievement is {\em NekRS}, which is the
-GPU-oriented version of the high-order spectral element code, Nek5000. 
-NekRS is being developed under DOE's Center for Efficient Exascale Discretizations
-(CEED) and sustains $\approx$ 0.5--1.0 TFLOPS ($10^{12}$ floating point
-operations per second) per MPI rank on current pre-exascale platforms (e.g.,
-Summit and Crusher at ORNL and Polaris at ANL).  It is a highly efficient code
-that realizes 2--4 TFLOPS-FP64/rank on key kernels and 80\% parallel efficiency
-with about 2M grid points per rank.  Consequently, a 50B grid-point problem
-such as the full pebble-bed reactor core of Fig. \ref{fig:pbr} can effectively
-use $P$=25,000 GPUs (or GCDs in the case of Frontier or tiles in the case of
-Aurora).  While such a calculation essentially fills all of Summit, it would
-use only a fraction of Frontier or Aurora.  On these platforms, we can
-anticipate running larger problems or running at multiple points in the reactor
-design space.  Execution times on these platforms can be anticipated to remain
-at $\approx$ 0.1--0.3 seconds per step, even with larger problems running on
-the full systems.
+seconds per step.  The software that enables this achievement is {\em NekRS},
+which is the GPU-oriented version of the highly-scalable thermal-fluids code,
+Nek5000.  NekRS is being developed under DOE's Center for Efficient Exascale
+Discretizations (CEED) and sustains $\approx$ 0.5--1.0 TFLOPS ($10^{12}$
+floating point operations per second) per MPI rank on current pre-exascale
+platforms (e.g., Summit and Crusher at ORNL and Polaris at ANL).  It is a
+highly efficient code that realizes 2--4 TFLOPS-FP64/rank on key kernels and
+80\% parallel efficiency with about 2M grid points per rank.  Consequently, a
+50B grid-point problem such as the full pebble-bed reactor core of Fig.
+\ref{fig:pbr} can effectively use $P$=25,000 GPUs (or GCDs in the case of
+Frontier or tiles in the case of Aurora).  While such a calculation essentially
+fills all of Summit, it would use only a fraction of Frontier or Aurora.  On
+these platforms, we can anticipate running larger problems or running at
+multiple points in the reactor design space, where execution times can be
+anticipated to remain at $\approx$ 0.1--0.3 seconds per step even with larger
+problems running on the full systems.
+
+Like Nek5000, NekRS is based on high-order body-fitted spectral element
+discretizations that has minimal numerical dispersion and dissipation, which
+are essential features for efficient simulation of turbulence.  Time-stepping
+uses either a $k$th-order semi-implicit method ($k$=2 or 3) or a $k$th-order
+characteristics scheme that allows Courant numbers significantly larger than
+unity.  NekRS has an extensive suite of preconditioners for the
+pressure-Poisson problem that are tailored to accelerator-based HPC platforms.
+Fast Poisson solvers are critical to rapid simulation of incompressible and
+weakly compressible flows.   As part of the Nek5000 source, NekRS supports all
+of the features of Nek5000, which include a large variety of boundary conditions
+and an extensive tool set for data analysis of turbulent heat transfer.
 
 
 
@@ -159,7 +169,7 @@ for reactor-scale simulations on DOE's exascale platforms, the use of
 such simulations for one-off determination of system behavior at a single
 parameter point does not fully leverage the data generated by such a large
 calculation.
-From a design perspective, it would be far more efficient if one could reliably
+From a design perspective, it is far more efficient if one can reliably
 explore parametric input/output relationships (e.g., Nusselt/Rayleigh-number
 relationships under low-flow conditions) in the neighborhood of the parameter
 space for which the high-fidelity DNS or LES is performed.   Such a capability
@@ -167,18 +177,18 @@ is precisely the goal of parametric model-order reduction (pMOR), which is
 typically based on reduced-order models (ROMs) of the high-fidelity DNS/LES
 (often referred to as full-order models, or FOMs).   
 
-Under NEUP Award 18-15520 we have developed have developed a pMOR/ROM
-capability within the Nek5000 framework that allows users to build ROMs and
-perform parameter variation with these models.  The development of ROMs for
-unsteady (e.g., turbulent or transient) flows is still an open research topic.
-In broad terms, the process consists of two problems: {\em (i) the solution
-reproduction problem}, and {\em (ii) the parametric problem}.  To these, we add
-a third category of relevance to the current project: {\em (iii) evolution
-of long transients}.
+Under NEUP Award 18-15520, we have developed have developed NekROM to provide a
+pMOR/ROM capability within the Nek5000 framework that allows users to build
+ROMs and perform parameter variation with these models.  The development of
+ROMs for unsteady (e.g., turbulent or transient) flows is still an open
+research topic.  In broad terms, the process consists of two problems: {\em (i)
+the solution reproduction problem}, and {\em (ii) the parametric problem}.  To
+these, we add a third category of relevance to the current project: {\em (iii)
+evolution of long transients}.
 
 We begin with the reproduction problem. The standard approach is to use
-$\approx 1000$ high-fidelity solution snapshots (i.e., full velocity/temperature
-fields) to extract $N$$\approx$20--200 basis functions through 
+$K$$\approx$1000 high-fidelity solution snapshots (i.e., full velocity/temperature
+fields) to form $N$$\approx$20--200 basis functions through 
 proper-orthogonal decomposition (POD) or some other low-rank approximation
 approach.  These bases can be used to approximate solutions to the governing
 Navier-Stokes and energy-transport equations, from which one can extract a 
@@ -195,15 +205,44 @@ There are several challenges to bringing the preceding scenario to fruition.
 The first is to ensure that the ROM can effectively track the quantities
 of interest (QOIs) produced by the FOM, even at the same parameter point.
 This tracking is by no means assured, particularly for turbulent flows
-where energy is dissipated by small-scale structures that are generally
-absent from POD bases.  Several stabilization strategies are possible,
-such as Leray regularization \cite{wang2012proper} or constrained coefficient
-evolution \cite{fick}.  Alternative approaches include modification of the
-approximation space as considered, for example, by Akkari {\em et al.} 
-\cite{akkari19}, who use a decomposition of modes that minimize the distance
-between the snapshots and the bases in respective $L^2$ and $\cH^1$ norms;
-by Khodkar {\em et al.} \cite{khodkar2019}, who derive bases from 
-Green's function approximations.  Under prior NEUP support, Kaneko 
-\cite{kaneko22a,kaneko22} developed an augmented-basis method (ABM) wherein  
+where energy is dissipated by small-scale structures that are generally absent
+from POD bases.  Several stabilization strategies are possible, such as Leray
+regularization \cite{wang2012proper} or constrained coefficient evolution
+\cite{fick}.  Alternative approaches include modification of the approximation
+space.  For example \cite{akkari19} uses a decomposition of modes that minimize
+into distinct sets minimizing the $L^2$ error (for accuracy) and the $\cH^1$
+error (for stability).  In \cite{khodkar2019} a basis is derived from Green's
+functions approximations.
+   Under prior NEUP support, Kaneko \cite{kaneko22a,kaneko22} developed an
+augmented-basis method (ABM) wherein a set of standard POD basis functions,
+$\{\bz_i(\bx) \}$,  is augmented with a subset of their nonlinear interaction
+terms, $\{\bz_i \cdot \nabla \bz_j\}$.   
+
+The success of the ABM approach is illustrated in the turbulent pipe flow
+examples of Fig. \ref{fig:abm}, which shows that standard POD Galerkin
+and Leray regularization can converge at lower Reynolds numbers $Re$
+with a sufficient number of basis functions, $N$, but that the required
+number of basis functions rapidly increases with $Re$.  Given the $O(N^3)$
+costs for the ROM, these methods appear to be limited to relatively low
+$Re$.  The ABM and the constrained approaches, however, perform much better
+because of their stability.
+
+\begin{figure}[t!] \centering
+    \includegraphics[width = 0.70\textwidth]{figs/kaneko_diss_pipe_pics.png}
+    \includegraphics[width = 0.70\textwidth]{figs/kaneko_diss_pipe_ubar.png}
+\caption{
+(top) Nek5000 DNS of turbulent pipe flow at $Re_D$=4000--10,000;
+(bottom) Mean velocity error in NekROM reproduction results for standard
+Galerkin POD ($L^2$-Glk, $H^1$-Glk), 
+Leray- and constrainted-based regularization
+($L^2$-Lry, $H^1$-Cst), and 
+ABM with three different subsets of the nonlinear terms
+(L^2$-Aug0 = $ \bz_0 \cdot \nabla \bz_j+ \bz_j \cdot \nabla \bz_0$,
+$L^2$-AugD = $ \bz_j \cdot \nabla \bz_j$,
+$L^2$-Aug0 $\bigcup$ $L^2$-AugD) \cite{kaneko22a,kaneko22}.
+\label{fig:abm}}
+\end{figure}
+
+
 
 
