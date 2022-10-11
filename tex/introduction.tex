@@ -37,9 +37,9 @@ Dillon Shaver, Argonne National Laboratory \\[-1ex]
 
 We seek \textbf{to develop novel multi-scale algorithmic approaches for the
 simulation of heat and fluid flow in advanced reactors}. The methods, which
-leverage recent advances in hardware and reduced order modeling approaches,
-will enable fast-running simulations of vastly accelerated speed, while
-maintaining accuracy comparable to high-fidelity methods such Large Eddy
+leverage recent advances in hardware and in reduced order modeling (ROM)
+approaches, will enable fast-running simulations of vastly accelerated speed,
+while maintaining accuracy comparable to high-fidelity methods such Large Eddy
 Simulation (LES) and Direct Numerical Simulation (DNS). These methods will
 allow designers to perform
 parameter sweeps to assess uncertainty and develop closures. They will also
@@ -72,8 +72,8 @@ fidelity, enabling transformative design approaches and improved economics.}
 In particular we aim to:
 \begin{enumerate}
 %
-   \item \textit{Enable the simulation of large parameter sweeps using reduced
-   order models developed over a subset of the parameter space.} This approach
+   \item \textit{Enable the simulation of large parameter sweeps using 
+   ROMs developed over a subset of the parameter space.} This approach
    will allow to assess uncertainty of system-level approaches and to develop
    closures.
 %
@@ -107,52 +107,46 @@ We illustrate the project overview in Fig. \ref{fig:sum}.
 
 \noindent
 {\bf High-Fidelity Simulations on DOE Leadership Computers.}
-The DOE is bringing several accelerator-based exascale platforms online,
-including Frontier at ORNL and Aurora at ANL.  As illustrated in Fig.
-\ref{fig:pbr}, we have demonstrated that it is possible to simulate a single
-flow through time for the thermal-hydraulics of a full pebble-bed reactor core
-(352,000 pebbles) in just six hours of wall-clock time on ORNL's {\em
-pre}-exascale machine, Summit.   This is an significant acheivement as it
-involves updating a quarter-trillion degrees-of-freedom at $\approx$ 0.3
+  DOE's current- and next-generation leadership computers employ nodes that
+  feature high-performance GPUs.  
+We have recently demonstrated that it is possible to simulate a single
+flow-through time for the thermal-hydraulics of a full pebble-bed reactor core
+(352,000 pebbles) in just six hours of wall-clock time on using 27648 
+NVIDIA V100s on ORNL's Summit \cite{sc22}.  This is an significant acheivement
+as it involves updating a quarter-trillion degrees-of-freedom at $\approx$ 0.3
 seconds per step.  The software that enables this achievement is {\em NekRS},
 which is the GPU-oriented version of the highly-scalable thermal-fluids code,
 Nek5000.  NekRS is being developed under DOE's Center for Efficient Exascale
 Discretizations (CEED) and sustains $\approx$ 0.5--1.0 TFLOPS ($10^{12}$
 floating point operations per second) per MPI rank on current pre-exascale
-platforms (e.g., Summit and Crusher at ORNL and Polaris at ANL).  It is a
-highly efficient code that realizes 2--4 TFLOPS-FP64/rank on key kernels and
-80\% parallel efficiency with about 2M grid points per rank.  Consequently, a
-50B grid-point problem such as the full pebble-bed reactor core of Fig.
-\ref{fig:pbr} can effectively use $P$=25,000 GPUs (or GCDs in the case of
-Frontier or tiles in the case of Aurora).  While such a calculation essentially
-fills all of Summit, it would use only a fraction of Frontier or Aurora.  On
-these platforms, we can anticipate running larger problems, or running at
-multiple points in the reactor design space, with execution times
-remaining at $\approx$ 0.1--0.3 seconds per step.
+platforms and 80\% parallel efficiency at about 2M grid points per rank.
+Consequently, a 51B grid-point problem such as the pebble-bed reactor of Fig.
+\ref{fig:pbr} can effectively use $P$=25,000 GPUs. While such a calculation
+fills all of Summit, it will require only a fraction of DOE's exascale
+platforms, where we can anticipate running much larger problems, or running at
+multiple points in the reactor design space.
 
-Like Nek5000, NekRS is based on high-order body-fitted spectral element
-discretizations that has minimal numerical dispersion and dissipation, which
-are essential features for efficient simulation of turbulence.  Time-stepping
-uses either a $k$th-order semi-implicit method ($k$=2 or 3) or a $k$th-order
-characteristics scheme that allows Courant numbers significantly larger than
-unity.  Fast Poisson solvers are critical to rapid simulation of reactor flows.
+Like Nek5000, NekRS is based on high-order spectral element
+discretizations that have minimal dispersion and dissipation, which
+are essential features for simulation of turbulence.  Time-stepping
+uses either a $k$th-order semi-implicit method ($k$=2 or 3) or a
+characteristics scheme that allows Courant numbers $>$ 1.
+Fast Poisson solvers are critical to rapid simulation of reactor flows.
 NekRS has an extensive suite of preconditioners for the pressure-Poisson
-problem that are tailored to accelerator-based HPC platforms.  As part of the
-Nek5000 source, NekRS supports all of the features of Nek5000, which include a
-large variety of boundary conditions and an extensive tool set for data
-analysis of turbulent heat transfer.
+problem that are tailored to accelerator-based HPC platforms.  NekRS supports
+most of the features of Nek5000, including a large variety of boundary
+conditions and extensive tools to analyze turbulent heat transfer.
 
 
 
 \begin{figure}[t!] \centering
     \includegraphics[width = 0.60\textwidth]{figs/pbr_pair.png}
     \includegraphics[width = 0.35\textwidth]{figs/nekrs_17x17_crusher_strong.png}
-    \caption{(left) NekRS turbulent flow simulation results for a full reactor
-core with 352625 pebbles.  The simulation comprised 51 billion gridpoints
-($E$=99M spectral elements of order $p$=8).  On all of Summit (27648 NVIDIA
-V100 GPUs), this simulation requires 0.36 seconds per step and would complete a
-single flow-through time in just six hours \cite{sc22}. (Computation by
-Yu-Hsiang Lan, ANL/UIUC.)
+    \caption{(left) 
+NekRS turbulent flow simulation results for a full reactor core with 352625
+pebbles. The simulation comprises 51 billion gridpoints and requires 0.36
+seconds per step, which corresponds to six hours for a single flow-through time
+on all of Summit.  (Computation by Yu-Hsiang Lan, ANL/UIUC \cite{sc22}.)
 (right) NekRS strong-scaling on current-generation accelerator-based platforms:
 AMD-MI250X-based Crusher (OLCF),
 NVIDIA-V100-based Summit (OLCF),
