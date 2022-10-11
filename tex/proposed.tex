@@ -1,12 +1,13 @@
 \noindent
-{\bf Proposed Tasks.}
-We propose to extend Nek5000/RS and NekROM to support a multiscale simulation
-environment.   The first set of tasks will be to provide more seemless
-integration between Nek5000/RS and NekROM.  Ideally, one should be able to
-generate a ROM on the fly.
+% We propose to extend Nek5000/RS and NekROM to support a multiscale simulation
+% environment.   The first set of tasks will be to provide more seemless
+% integration between Nek5000/RS and NekROM.  Ideally, one should be able to
+% generate a ROM on the fly.
 
+\vspace{-.1in}
+{\bf Proposed Tasks.}
 We propose the following tasks to realize a multiscale simulation
-capability for reactor analysis:
+capability within Nek5000/RS/ROM for reactor analysis:
 
 \textbf{Thrust 1: Data Generation.} We perform high fidelity simulations of the
 flow in SFR fuel assemblies for a variety of conditions including a range of
@@ -22,12 +23,13 @@ task will support Thrust 2.
 \\[-4ex]
 \item{\em iii.} Develop data to validate reduced order models for both
 transient and parameter sweeps. This Task will support Thrust 3.
+\\[-4ex]
 \end{description}
 
 \textbf{Thrust 2: Algorithmic development.} This is the core of the project.
 We seek to develop advanced ROM methods and their extension to multi-scale
 frameworks.
-\\[-4ex]
+\\[-5ex]
 \begin{description}
 \item{\em i.}
 Continued development of ROM closure models to increase robustness 
@@ -49,27 +51,33 @@ regions of interest. This leverages past work on rod bundles and sub-channels,
 whose geometric properties have been exploited to maximize the use of small
 domain high-fidelity simulation to improve RANS results in a multi-scale
 fashion \cite{martinez2019a}.  
+\\[-5ex]
 \end{description}%
 
-\textbf{Thrust 3: Validation and Demonstration.} In this thrust we validate and demonstrate the proposed methods.
-\\[-4ex]
+\textbf{Thrust 3: Validation and Demonstration.} 
+Here we validate and demonstrate the proposed methods.
+\\[-5ex]
 \begin{description}
 \item{\em i.}
 Validate ROM transient calculations with high-fidelity counterparts
 in an SFR rod-bundle at low-flow conditions.
+\\[-4ex]
 \item{\em ii.}
 Perform ROM-based parameter sweeps and compare these to corresponding
 FOM results for validation.
+\\[-4ex]
 \item{\em iii.}
 Demonstrate accelerated transient capability for cases that are currently not
-feasible.  \end{description}
+feasible.  
+\\[-3ex]
+\end{description}
 
-\textbf{Major deliverables and Timetable of Activities}
-
+\textbf{Major deliverables and Timetable of Activities} \\
 At the end of each year a report will be issued describing progress to date.
 Four major deliverables are expected out of this project as shown on
-Figure~\ref{fig:gantt}:
+Fig.~\ref{fig:gantt}: \\
 
+\vspace*{-.10in}
 \noindent \textbf{Thrust 1: Development of Transient High-resolution
 Benchmarks} (September 2024). We define at least three transient and parametric
 sweep benchmarks for Sodium Fast Reactors. We also provide initial simulation
@@ -77,16 +85,16 @@ with LES/DNS using the NEAMS code NekRS. This will be used to support Thrust 3.
 
 \noindent \textbf{Thrust 2: Preliminary Implementation of ROM-based Multiscale
 algorithms} (September 2025). Preliminary implementations are discussed. A
-comparison against nitial  benchmark problems is provided. Issues with the
+comparison against initial benchmark problems is provided. Issues with the
 methods are highlighted as well as possible solutions.
 
 \noindent \textbf{Thrust 2/3: Final Implementation and Demonstration of
-ROM-based Multiscale algorithms} (September 2026). This milestone is the
-culmination of the project. Improvement implementations are discussed. We
+ROM-based Multiscale Algorithms} (September 2026). 
+Culmination of the project. Improvement implementations are discussed. We
 provide recommendations on how the methods are to be integrated within the
 NEAMS program.
 
-\noindent \textbf{Code release.} (September 2026). The production code is
+\noindent \textbf{Code Release.} (September 2026). The production code is
 released in public repositories.
 
 %\begin{table}[tbhp]
