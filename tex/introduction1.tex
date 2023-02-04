@@ -1,0 +1,332 @@
+\parindent 0in
+\parskip 0.1in
+
+\begin{center}
+{\bf Reduced Order Modeling of Heat and Fluid Flow: \\
+Multi-Scale Modeling of Advanced Reactors to Enable Faster Deployment}
+\\[-7ex]
+\end{center}
+
+{\bf Technical work scope identification: M\&S-1 }
+
+{\bf PI: }\begin{minipage}[t]{2.8in}
+Paul Fischer \\
+%Department of Computer Science \\
+%Department of Mechanical Science \& Engineering \\
+University of Illinois, Urbana-Champaign
+\end{minipage}
+{\bf co-PIs: } \begin{minipage}[t]{3in}
+Elia Merzari, Pennsylvania State University \\
+Dillon Shaver, Argonne National Laboratory \\[-2ex]
+\end{minipage}
+
+\noindent {\bf Budget Request:} \$1000K (\$333.3K/year $\times$ 3 years)\\[-2ex]
+
+\noindent {\bf Project Summary:} \\[-4ex]
+%\section{Project Summary}
+
+% \begin{itemize}
+% \item
+% A summary of the proposed project, including a description of the project and a
+% {\em clear explanation of its importance and relevance to the objectives in Part I
+% Section A.}
+% \item
+% Major deliverables and outcomes the R\&D will produce.
+% \item
+% Timeframe of execution: October 1, 2023--September 30, 2026
+% \end{itemize}
+
+We seek \textbf{to develop novel multi-scale algorithmic approaches for the
+simulation of heat and fluid flow in advanced reactors}. The methods, which
+leverage recent advances in hardware and in reduced order modeling (ROM)
+approaches, will enable thermal-hydraulics (TH) simulations of vastly
+accelerated speed, while maintaining accuracy comparable to high-fidelity
+methods such Large Eddy Simulation (LES) and Direct Numerical Simulation (DNS).
+These methods will allow designers to perform parameter sweeps to assess
+uncertainty and develop closures. They will also enable, for the first time,
+high fidelity simulation of long transients.
+
+Several  advanced reactor concepts are currently being pursued in the United
+States, with dozens of companies proposing unique designs. Crucial for their
+deployment is the analysis of  reactor transients (e.g., a protected loss of
+flow), which is an essential part of the evaluation of thermal margins and the overall
+safety case.  In most cases, licensing will be pursued with established
+methods, based on lumped parameter system codes (e.g., SAM \cite{hu2021}).
+However, these codes require adequate closures that are typically obtained
+empirically and require extensive validation. Furthermore, these methods are
+characterized by high level of uncertainty when dealing with complex
+three-dimensional turbulent flow, especially in the presence of large
+enclosures, mixed convection, and thermal stratification. High-fidelity
+simulation on the other hand remains expensive, especially for
+large parameter sweeps or for the simulation of nuclear transients, and data
+remains sparse.
+
+Moreover, as the advanced reactor industry matures and moves past demonstration
+projects, economics will become a larger driver. This pressure will likely push
+vendors to maximize the economic potential (e.g., higher power output,
+higher temperature for process heat, reduced capital cost), especially as new
+materials and fuels are introduced. These goals will benefit from
+improved methods to assess thermal margins that push toward high fidelity.
+\textbf{This proposal seeks to develop radically novel algorithmic approaches
+to the simulation of advanced reactors, with an unprecedented level of
+fidelity, enabling transformative design approaches and improved economics.}
+In particular we aim to:
+\begin{enumerate}
+%
+   \item \textit{Enable the simulation of large parameter sweeps using
+   ROMs developed over a subset of the parameter space.} This approach
+   will allow to assess uncertainty of system-level approaches and to develop
+   closures.
+%
+   \item \textit{Enable the accelerated simulation of transients.}
+   This approach will allow to assess lower resolution approaches in conjunction
+   with experimental data for the simulation of transient.
+\\[-5ex]
+\end{enumerate}
+As a demonstration application we choose the simulation of Sodium Fast Reactor
+(SFR) fuel assemblies under steady-state and transient conditions. \textit{We
+emphasize that the methods developed will apply to a broad range of advanced
+reactor applications.} To maximize impact, we integrate the proposed multi-scale approaches in the Cardinal \cite{cardinal} framework thus allowing their usage in SAM \cite{hu2021}.
+
+\begin{figure}[t!] \centering
+    {\setlength{\unitlength}{1.0in} \begin{picture}(6.5,2.000)(0.0,0)
+      \put(0.20,00){\includegraphics[height=1.78in]{figs/overview.png}}
+      \put(4.20,0.00){\includegraphics[height=1.78in]{figs/pbr352k_b.png}}
+    \end{picture}}
+    \caption{
+(left) Overview of Project with three thrusts: Data Generation,
+             Reduced-Order Modeling Development, and Validation/Demonstration.
+(right) Current capabilities--single flow-through of full pebble bed
+reactor core in 6 hours on Summit. % \\[-4ex]
+\label{fig:sum}}
+\end{figure}
+
+\noindent {\bf Impact} \\[-4ex]
+
+The operation, safety, and design of Sodium fast reactors are impacted by several key factors. Three of these are thermal stratification, mixing in large enclosures such as liquid metal pools, and mixed convection.
+
+Thermal stratification can occur during loss of flow incidents in the upper plenum, potentially hindering the establishment of natural circulation which is crucial during these events.
+
+Inadequate mixing of the fuel assembly flows in the upper plenum contributes to thermal stratification and can result in fluctuating thermal loads on structural components during normal operation, leading to fatigue and related failures.
+
+During loss of flow incidents, low flow conditions at the periphery of the core, along with steep radial core gradients, can result in mixed convection. This impacts the thermal expansion of assembly ducts and the overall thermo-mechanical behavior of the core, which is a critical factor in reactivity during these events.
+
+All of these phenomena affect the thermal limits and margins of the reactor, with similar considerations applicable to all liquid metal reactors. A lack of cost-effective and accurate prediction methods for these phenomena has long been recognized as a limitation in fast reactor gap analysis studies.
+
+\noindent {\bf Project Motivation and Technical Objectives} \\[-4ex]
+%\section{Project Motivation and Technical Objectives}
+
+We propose to leverage ongoing hardware, software, and algorithmic developments
+to dramatically enhance thermal-hydraulic analysis capabilities.  The work will
+entail combining advanced simulations on DOE's exascale computing platforms
+with modern data analysis methods that effectively compress these
+first-principle data to efficient exploratory tools based on reduced-order
+models (ROMs).
+We illustrate the project overview in Fig. \ref{fig:sum} (left).
+
+%% \begin{wrapfigure}{rt}{2.8in} \centering
+%%    {\setlength{\unitlength}{1.0in} \begin{picture}(2.800,2.250)(0.05,.14)
+%%      \put(0,0.00){\includegraphics[scale=0.30]{figs/pbr352k_b.png}}
+%%    \end{picture}}
+%%    \caption{Velocity distribution in full pebble bed core with
+%%    352625 pebbles.  \label{fig:pbr}}
+%% \end{wrapfigure}
+
+\noindent
+{\bf High-Fidelity Simulations on DOE Leadership Computers.}
+  DOE's current- and next-generation leadership computers employ nodes that
+  feature high-performance GPUs.
+We have recently demonstrated that it is possible to simulate a single
+flow-through time for the thermal-hydraulics of a full pebble-bed reactor core
+(352,000 pebbles) in just six hours of wall-clock time on using 27648
+NVIDIA V100s on ORNL's Summit \cite{sc22}.  This is an significant acheivement
+as it involves updating a quarter-trillion degrees-of-freedom at $\approx$ 0.3
+seconds per step.  The software that enables this achievement is {\em NekRS},
+which is the GPU-oriented version of the highly-scalable thermal-fluids code,
+Nek5000.
+%% NekRS is being developed under DOE's Center for
+%% Efficient Exascale Discretizations (CEED) and
+NekRS sustains $\approx$ 0.5--1.0 TFLOPS ($10^{12}$
+floating point operations per second) per MPI rank on current pre-exascale
+platforms and 80\% parallel efficiency at about 2M grid points per rank.
+Consequently, a 51B grid-point problem such as the pebble-bed reactor of Fig.
+\ref{fig:sum}(right) can effectively use $P$=25,000 GPUs. While such a calculation
+fills all of Summit, it will require only a fraction of DOE's exascale
+platforms, where we can anticipate running much larger problems, or running at
+multiple points in the reactor design space.
+
+Like Nek5000, NekRS is based on high-order spectral element
+discretizations that have minimal dispersion and dissipation, which
+are essential features for simulation of turbulence.  Time-stepping
+uses either a $k$th-order semi-implicit method ($k$=2 or 3) or a
+characteristics scheme that allows Courant numbers $>$ 1.
+Fast Poisson solvers are critical to rapid simulation of reactor flows.
+NekRS has an extensive suite of preconditioners for the pressure-Poisson
+problem that are tailored to accelerator-based HPC platforms.  NekRS supports
+most of the features of Nek5000, including a large variety of boundary
+conditions and extensive tools to analyze turbulent heat transfer.
+
+
+
+% \begin{figure}[t!] \centering
+%     \includegraphics[width = 0.60\textwidth]{figs/pbr_pair.png}
+%     \includegraphics[width = 0.35\textwidth]{figs/nekrs_17x17_crusher_strong.png}
+%     \caption{(left)
+% NekRS turbulent flow simulation results for a full reactor core with 352625
+% pebbles. The simulation comprises 51 billion gridpoints and requires 0.36
+% seconds per step, which corresponds to six hours for a single flow-through time
+% on all of Summit.  (Computation by Yu-Hsiang Lan, ANL/UIUC \cite{sc22}.)
+% (right) NekRS strong-scaling on current-generation accelerator-based platforms:
+% AMD-MI250X-based Crusher (OLCF),
+% NVIDIA-V100-based Summit (OLCF),
+% NVIDIA-A100-based Perlmutter (NERSC),
+% NVIDIA-A100-based Polaris (ALCF).
+% The test problem is a 17$\times$17 rod-bundle with 95 million grid points.
+% (Simulations by Misun Min, ANL, and Yu-Hsiang Lan, ANL/UIUC.)
+% \label{fig:pbr}}
+%\end{figure}
+
+
+%% (WHY ROM)
+\noindent
+{\bf Data-Driven Reduced-Order Models.}
+While it is clear that NekRS will be capable of delivering fast turn-around
+for reactor-scale simulations on DOE's exascale platforms, the use of
+such simulations for one-off determination of system behavior at a single
+parameter point does not fully leverage the data generated by such large
+calculations.
+From a design perspective, it is far more efficient if one can reliably
+explore parametric input/output relationships (e.g., Nusselt/Rayleigh-number
+relationships under low-flow conditions) in the neighborhood of the parameter
+space for which the high-fidelity DNS or LES is performed.   Such a capability
+is precisely the goal of parametric model-order reduction (pMOR), which is
+typically based on reduced-order models (ROMs) of the high-fidelity DNS/LES
+(often referred to as full-order models, or FOMs).
+
+Under NEUP Award 18-15520, we have developed NekROM to provide a
+pMOR/ROM capability within the Nek5000 framework that allows users to build
+ROMs and perform parameter variation with these models.  The development of
+ROMs for unsteady (e.g., turbulent or transient) flows is still an open
+research topic.  In broad terms, the process consists of two problems: {\em (i)
+the solution reproduction problem}, and {\em (ii) the parametric problem}.  To
+these, we add a third category of relevance to the current project: {\em (iii)
+evolution of long transients}.
+
+We begin with the reproduction problem. The standard approach is to use
+$K$$\approx$1000 high-fidelity solution snapshots (i.e., full velocity/temperature
+fields) to form $N$$\approx$20--200 basis functions through
+proper-orthogonal decomposition (POD) or some other low-rank approximation
+approach.  These bases can be used to approximate solutions to the governing
+Navier-Stokes and energy-transport equations, from which one can extract a
+low-dimensional dynamical system governing the unknown basis coefficients.
+These systems, which are of size $N$, run extremely fast---{\bf in just a few
+minutes on a laptop it is possible to evolve tens-of-thousands of convective
+time units,} much longer than feasible with a FOM, even on an exascale platform,
+which is one of the reasons that ROMs are interesting for long-time transients.
+Moreover, it is relatively easy to adjust equation parameters to have a nominal
+pMOR tool.
+%  (Adjusting geometry is more challenging and one of the
+%  topics to be explored in the context of this project).
+
+\begin{figure}[t] \centering
+{\setlength{\unitlength}{1.0in}
+ \begin{picture}(6.5,1.40)(0,0.05)
+ \put(-.08,0.15){\includegraphics[width = 0.24\textwidth]{figs/kaneko_diss_pipe_r10k.png}}
+ \put(1.75,0.00){\includegraphics[width = 0.70\textwidth]{figs/kaneko_diss_pipe_ubar.png}}
+\end{picture}}
+\caption{
+{\bf (left)}
+    Nek5000 DNS of turbulent pipe flow at $Re_D$=10,000;
+{\bf (right)}
+    Mean velocity error in ROM reproduction results for
+    Galerkin POD ($L^2$-Glk, $H^1$-Glk),
+    Leray- and constrainted-based regularization
+    ($L^2$-Lry, $H^1$-Cst), and
+    ABM with three different subsets of the nonlinear terms
+    ($L^2$-Aug0=$\bz_0 \cdot \nabla \bz_j+ \bz_j \cdot \nabla \bz_0$,
+    $L^2$-AugD=$\bz_j \cdot \nabla \bz_j$,
+    $L^2$-AugC=$L^2$-Aug0 $\bigcup$ $L^2$-AugD) \cite{kaneko22a,kaneko22}.
+\label{fig:abm}}
+\end{figure}
+
+
+There are several challenges to bringing the preceding scenario to fruition.
+The first is to ensure that the ROM can accurately track the quantities
+of interest (QOIs) produced by the FOM, even at the same parameter point.
+Accuracy is by no means assured, particularly for turbulent flows
+where energy is dissipated by small-scale structures that are generally absent
+from POD bases.  Several stabilization strategies are possible, such as Leray
+regularization \cite{wang2012proper} or constrained coefficient evolution
+\cite{fick18}.  Alternative approaches include modification of the approximation
+space.  For example \cite{akkari19} uses a decomposition of modes
+into distinct sets minimizing the $L^2$ error (for accuracy) and the $\cH^1$
+error (for stability).  In \cite{khodkar2019}, a basis is derived from Green's
+functions approximations.
+   Under prior NEUP support, Kaneko \cite{kaneko22a,kaneko22} developed an
+augmented-basis method (ABM) wherein a set of standard POD basis functions,
+$\{\bz_i(\bx) \}$,  is augmented with a subset of their nonlinear interaction
+terms, $\{\bz_i \cdot \nabla \bz_j\}$.
+  The success of the ABM is illustrated in the turbulent pipe flow
+examples of Fig. \ref{fig:abm}, which shows that standard POD Galerkin and
+Leray regularization can converge at lower Reynolds numbers $Re$ with a
+sufficient number of basis functions, $N$, but that the required number of
+basis functions rapidly increases with $Re$.  Given the $O(N^3)$ costs for the
+ROM, these methods are limited to relatively low $Re$.  The ABM and
+the constrained approaches, however, perform much better because of their
+stability.  The turbulent kinetic energy behavior is similar to the
+mean velocities shown in Fig. \ref{fig:abm}, but the ABM
+can be overly dissipative at higher $Re$.  The mechanism for this anomalous
+behavior is under investigation.
+
+\begin{wrapfigure}{rt}{3.2in} \centering
+   {\setlength{\unitlength}{1.0in} \begin{picture}(3.000,1.850)(0.05,.14)
+     \put(0,0.00){\includegraphics[scale=0.43]{figs/challenge.png}}
+   \end{picture}}
+   \caption{Velocity distribution in wire-wrapper assembly as a function of
+    the Richardson number at low flow conditions. \label{fig:cha}}
+\end{wrapfigure}
+With a robust reproduction capability, the next step in pMOR is to ensure that
+the ROM can accurately predict the system behavior at other parameter points
+and, ideally, provide error indicators to assess the departure between the ROM
+and the FOM.  As a step toward pMOR for 3D reactor analysis, under NEUP
+18-15520,  we extended the error-estimators of \cite{fick18} to develop
+an error-indicated pMOR for high Rayleigh-number two-dimensional slot
+convection in \cite{tsai22a}.
+By using a greedy algorithm, the error indicators allow one to optimize
+construction of a parametric map in which new FOMs are run wherever
+discrepancies between the ROM and FOM are deemed to be large.
+In \cite{tsai22a}, we also identify chaotic FOMs where certain QOIs are not
+reproducible either by a ROM or a FOM.
+
+\noindent {\bf Challenge Problem.}
+Fluid flow and heat removal through fuel, shield and reflector assemblies  can
+have major impacts on operation and safety for Sodium Fast Reactors (SFRs).
+This type of reactor is of great interest in the United States due to the
+planned  deployment of Terrapower's Natrium concept funded partially through
+the Advanced Reactor Demonstration program (ARDP). These assemblies are formed
+by bundles from 19 to 217 pins, with a wire wrapped around each pin to maintain
+the rods in place.
+
+During transients, these assemblies are characterized by a range of conditions
+that result from reduced flow rates and from large-scale organized flow
+patterns, including potential intra-assembly buoyancy-driven circulation. Such
+low flow cases can provide challenges for experiments due to complications in
+measuring the flow rates and temperatures with high accuracy in different
+areas. This consequently also raises the uncertainty of many modeling
+approaches for these phenomena, where existing correlations and sub-channel
+methods fail. An example of the complex range of flow patterns in provided in
+Fig. \ref{fig:cha}, which shows a transition from steady forced convection to
+mixed convection.  Massive circulations are introduced: in a realistic
+transient the bundle will encounter the full range of conditions. We ultimately
+seek methods that can provide accurate and \textit{predictive} results.
+
+% \begin{figure}[t!] \centering
+%     \includegraphics[width = 0.50\textwidth]{figs/challenge.png}
+%     \caption{ Velocity distribution in wire-wrapper assembly as a function of
+%     the Richardson number at low flow conditions. \label{fig:cha}}
+% \end{figure}
+
+
+
+
+\input tex/proposed
