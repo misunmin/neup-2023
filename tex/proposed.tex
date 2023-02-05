@@ -62,10 +62,9 @@ ROMs can replace the solution of the Navier-Stokes equations with a simplified m
 
 For small LES domains, a one-way approach where information flows only from the ROM to the LES may be sufficient. If the flow behavior within the LES domain is expected to have a global impact, a two-way coupling approach is needed. We will focus on an overlapping domain approach where the LES behavior is translated into forcing terms for each mode of the ROM.
 
-We will also examine RANS-ROM modeling as a potential interface for ROM methods. This includes using previous work on rod bundles and sub-channels, where high-fidelity simulation was used to improve RANS results.
+We will also examine RANS-ROM modeling as a potential interface for ROM methods. This includes using previous work on rod bundles and sub-channels, where high-fidelity simulation was used to improve RANS results \cite{martinez2019a}.
 
-Our aim is to develop a generalized interface between RANS and ROM. For example, ROM results from one assembly can be superposed over a transient RANS model of the entire system to recover unsteady features not modeled correctly by RANS. To this end, it is crucial to ensure that the energy transfer between scales is realistic. We will leverage our recent work on the concept of a novel energy-based ROM length scale. We will also explore the potential of an uplifting ROM approach where closure and projection errors are corrected in the prolongation to RANS.
-
+Our aim is to develop a generalized interface between RANS and ROM. For example, ROM results from one assembly can be superposed over a transient RANS model of the entire system to recover unsteady features not modeled correctly by RANS. To this end, it is crucial to ensure that the energy transfer between scales is realistic. We will leverage recent work on the concept of a novel energy-based ROM length scale \cite{mou2021}. We will also explore the potential of an uplifting ROM approach \cite{ahmed2020} where closure and projection errors are corrected in the prolongation to RANS.
 
 \begin{figure}[t!] \centering
     {\setlength{\unitlength}{1.0in} \begin{picture}(6.5,2.500)(0.0,0)
