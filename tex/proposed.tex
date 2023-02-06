@@ -163,25 +163,59 @@ released in public repositories.
 
 \begin{figure}[t!] \centering
     {\setlength{\unitlength}{1.0in} \begin{picture}(6.5,2.500)(0.0,0)
-      \put(0.9,-.10){\includegraphics[height=2.7in]{figs/neup_gantt.png}}
+      \put(0.9,-.10){\includegraphics[height=2.7in]{figs/neup_gantt_v1.png}}
     \end{picture}}
     \caption{Timeline of proposal by fiscal year.  \label{fig:gantt}
 \\[-3ex]
 }
 \end{figure}
 
-%%% \begin{figure} [hbt]
-%%% \centering
-%%% \begin{ganttchart}[%Specs
-%%%  x unit=0.6cm,
-%%%  y unit title=0.5cm,
-%%%  y unit chart=0.5cm,
-%%%  vgrid,hgrid,
-%%%  title height=1,
-%%% %     title/.style={fill=none},
-%%%  title label font=\bfseries\footnotesize,
-%%%  bar/.style={fill=blue},
-%%%  bar height=0.7,
+
+% \begin{figure} [hbt]
+% \centering
+% \begin{ganttchart}[%Specs
+%  x unit=0.8cm,
+%  y unit title=0.5cm,
+%  y unit chart=0.5cm,
+%  vgrid,hgrid,
+%  title height=1,
+% %     title/.style={fill=none},
+%  title label font=\bfseries\footnotesize,
+%  bar/.style={fill=blue},
+%  flip/.style={milestone inline label node/.append style={right=2ex}},
+%  bar height=0.7,
+% %   progress label text={},
+%  group right shift=0,
+%  group top shift=0.7,
+%  group height=.3,
+%  group peaks width={0.2},
+%  inline]{1}{12}
+%  %%% %labels
+% \gantttitle[]{Fiscal Year}{12}    \\             % title 2
+% \gantttitle{2024}{4}
+% \gantttitle{2025}{4}
+%  \gantttitle{2026}{4}\\
+%  %%% % Setting group if any
+% \ganttgroup[inline=false]{Task 1}{1}{8} \\
+% \ganttbar[inline=false]{1.i Development/Augmentation of benchmarks}{1}{4} \\
+% \ganttbar[inline=false]{1.ii Data Generation to support Task 2 }{1}{8} \\
+% \ganttbar[inline=false]{1.iii Data generation to support Task 3 }{1}{8} \\
+% \ganttgroup[inline=false]{Task 2}{1}{10} \\
+% \ganttbar[inline=false]{2.i Improved ROM closures }{1}{6} \\
+% \ganttbar[inline=false]{2.ii ROM for transients}{3}{10}\\
+% \ganttbar[inline=false]{2.iii Multi-scale methods}{3}{10} \\
+% \ganttgroup[inline=false]{Task 3}{6}{12} \\
+% \ganttbar[inline=false]{3.i Validation for transients }{6}{12} \\
+% \ganttbar[inline=false]{3.ii Validation for parameter sweeps}{6}{12}\\
+% \ganttbar[inline=false]{3.iii Demonstration}{9}{12} \\
+% \ganttmilestone[inline=false]{Benchmarks}{4} \\
+% \ganttmilestone[inline=false]{Preliminary implementation}{8} \\
+% \ganttmilestone[inline=false]{Final implementation}{12} \\
+% \ganttmilestone[inline=false]{Code release}{12}
+% \end{ganttchart}
+% \caption{\centering Timeline of proposal by fiscal year.} \label{fig:gantt}
+% \end{figure}
+
 %%% %   progress label text={},
 %%%  group right shift=0,
 %%%  group top shift=0.7,
