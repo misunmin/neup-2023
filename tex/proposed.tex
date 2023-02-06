@@ -26,6 +26,23 @@ transient and parameter sweeps. This Task will support Thrust 3.
 \\[-4ex]
 \end{description}
 
+In this work, we will leverage several cases developed as benchmarks for mixed convection and thermal striping as part of a recent IRP. The cases are summarized in Table~\ref{tab:cases}. As part of this task, we will augment these cases by performing additional simulations for a broader range of parameters and collecting additional snapshots as needed. We note that relying on well-defined benchmarks employed in the past also allows us to evaluate the performance advantage of ROM-based approaches.
+
+\begin{table}
+\centering
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Case} & \textbf{Size} (grid points) & \textbf{Run time} (CU) & \textbf{Snapshots} \\\hline
+Mixed convection (19 pins) \cite{kraus22}& $1\cdot 10^{9}$ & 20,000 & 5000 \\
+\hline
+Mixed convection (61 pins) \cite{kraus22}& $3\cdot 10^{9}$ & 2000 &  5000 \\
+\hline
+Parallel Jets \cite{acierno22}& $1\cdot 10^{9}$ & 200,000 & 10,000 \\
+\hline
+\end{tabular}
+\caption{\label{tab:cases} List of existing cases.}
+\end{table}
+
 \textbf{Thrust 2: Algorithmic Development.} This is the core of the project.
 We seek to develop advanced ROM methods that are seemlessly
 extended to a multi-scale framework in Nek5000/RS/ROM.
