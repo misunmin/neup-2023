@@ -1,0 +1,30 @@
+
+
+% Unique challenges to accomplishing the work and planned mitigations.
+
+The most significant challenge is to ensure that the analysis costs
+are low enough to be useful as a design tool that can be used on a
+workstation.  The $O(N^3)$ storage and work complexity puts pressure on
+delivering an accurate solution with a relatively small basis set.  As noted,
+our strategy makes significant strides in this direction.  However, 
+complex turbulent flows have high-dimensional attractors that might not
+be adequately captured with a practical-sized basis set.  Several
+mitigation strategies have been proposed in the literature that are
+compatible with the proposed approach.  One of these is to use a POD
+based on a subset of the FOM computational domain, where the solution
+could be approximated by a lower number of modes.   
+    One could also apply the pMOR strategy to the unsteady
+RANS equations, which have significantly lower-dimensional attractors
+than their high-Reynolds number DNS and LES counterparts.  
+The presence of eddy viscosity/diffusivity in these models leads to
+a high degree of nonlinearity that is greater than the quadratic
+nonlinearity of the primitive equations.  A first step, however, would
+be to attempt a linearization of the RANS coefficients so that the
+overall complexity of the pMOR does not exceed $O(N^3)$.
+  Another cost-saving strategy is to parallelize the {\em online} portion of
+the ROM (\ref{eq:const}), which is fairly straightforward for a handful of
+processors.  Further reduction of {\em offline} costs could also be effected
+by exploiting available parallelism in evaluation of the 3rd-order tensor.
+   Finally, identifying rigorous error-estimators will be a 
+significant challenge but much progress has been made towards
+error estimators for the NSE \cite{fick18,patera05}.

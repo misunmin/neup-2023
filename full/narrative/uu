@@ -1,0 +1,28 @@
+
+
+% Unique challenges to accomplishing the work and planned mitigations.
+
+Like RANS, one can expect the success of ROMs for turbulent flows to
+be somewhat sporadic.  
+  Unlike elliptic PDEs, for which there is robust and well-established
+stability and convergence theory, the nonsymmetric nonlinear NSE
+largely defy such analysis (\cite{fick18} makes progress in this
+direction), which makes ROM-for-turbulence development challenging.
+Like RANS, however, the results can be spectacularly rewarding when ROMs
+work---thousands of convective time units simulated per minute for small $N$.
+   Close inspection of the mathematically-driven ROM literature for LES and
+RANS reveals that many of the examples do not exhibit emergent turbulence.
+Turbulent cases where ROMs do succeed often feature clear time-scale separation
+(e.g., 3D flow past a cylinder \cite{wells2017evolve} or a precessing jet
+\cite{akkari19}), which indicates that succcess is more likely when there 
+is an emergent low-rank dynamical system.  If ROMs work only in these
+cases, we could still consider this a success.
+
+Fortunately, we have a team that is well-versed in multiple numerical
+methods and their applicability across the broad reactor TH landscape.
+The team also understands the benefit/costs of TH analysis in this
+application space.  It is a team that cannot afford to compromise on 
+tackling challenging problems.  As such, we expect to push the boundaries
+of ROMs to succeed wherever possible.
+
+

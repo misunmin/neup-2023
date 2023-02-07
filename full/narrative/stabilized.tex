@@ -118,7 +118,7 @@ is accurate for turbulent flows, even under the same parametric conditions.
 A primary issue for turbulence is that energy is dissipated by small-scale
 structures that are generally absent from POD bases.  Several stabilization
 strategies are possible, such as Leray regularization, in which the advecting
-field is smoothed \cite{wang2012proper}, or constrained evolution, in which
+field is smoothed \cite{wells2017evolve}, or constrained evolution, in which
 each basis coefficient is constrained to the range observed in the projection
 of the snapshot space onto the bases \cite{fick18}.  (To the extent that the
 POD modes are Fourier like, Leray regularization can be implemented simply by
@@ -156,7 +156,7 @@ of POD modes, $N_P$, and dissipative modes (here, ABM), $N_d$ based on
 readily available energy estimates.  
 Kaneko \cite{kaneko22a,kaneko22} demonstrates that the ABM indeed serves as an
 energy sink, precisely as required for stability.
-  Following \cite{wang2012proper}, we can also consider filter-based
+  Following \cite{wells2017evolve}, we can also consider filter-based
 stabilization as is commonly used for LES of turbulent flows.  We are 
 pursuing these questions in collaboration with Traian Iliescu at V. Tech.
 \cite{mou2021}.
