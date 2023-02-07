@@ -13,9 +13,10 @@ a ROM or suite of ROMs is constructed to estimate the system behavior
 over a range of parametric inputs (e.g., inlet flow rates, thermal loading,
 or Reynolds number)
 without the need for high-fidelity simulations at every point in the target
-parameter space.  The output of the pMOR will be a small set of coefficients to
-drive low-rank systems of ODEs that can be directly coupled with either a
-Systems Analysis Module (SAM) or with detailed, localized, LES or RANS models.
+parameter space \cite{fick18,tsai22a}.  The output of the pMOR is a small
+set of coefficients to drive low-rank systems of ODEs that can be directly
+coupled with either a Systems Analysis Module (SAM) or with detailed,
+localized, LES or RANS models.
 
 The ROMs are based on data (solution snapshots) from high-fidelity direct
 numerical (DNS), large-eddy (LES), or unsteady Reynolds-averaged Navier-Stokes
@@ -56,8 +57,8 @@ module then distills the FOM results into a ROM ODE system of size $N \approx
 in the NekROM suite.  An outer driver is provided to iterate between the ROM
 and Nek5000/RS to pick optimized (error-indicated) anchor (trial) points in the
 target parameter space, $\cP$.
-  The principal focus of this project will be to push the \textbf{state-of-the-art} 
-for ROM-based simulations of turbulence, to identify which turbulence problems are
+  The principal focus of this project will be to push the \textbf{state-of-the-art
+for ROM-based simulations of turbulence,} to identify which turbulence problems are
 tractable, and which are not \cite{tsai22a}, to integrate the ROM simulator with
 the RANS and LES capabilities in Nek5000/RS, and to test this multiscale 
 framework within a suite of TH challenge problems described in the next section.
