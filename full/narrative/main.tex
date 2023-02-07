@@ -1,17 +1,17 @@
-\vspace*{-.0in} \noindent
-\underline{\textbf{Title of Project:}}
+\vspace*{-.0in} \noindent 
+\underline{\textbf{Title of Project:}} 
 \hspace*{.005in}
 \textbf{ Reduced Order Modeling of Heat and Fluid Flow: \\
 \hspace*{1.091in}
         Multi-Scale Modeling of Advanced Reactors to Enable Faster Deployment}
 
-\vspace*{.10in} \noindent
+\vspace*{.10in} \noindent 
 \underline{\textbf{Technical Workscope Identification:  M\&S-1}}
 \\[-2ex]
 
 
-\vspace*{.10in} \noindent
-\underline{\textbf{Project Objectives}}
+\vspace*{.10in} \noindent 
+\underline{\textbf{Project Objectives}} 
 \\[-2ex]
 
 We propose to leverage ongoing hardware, software, and algorithmic developments
@@ -19,8 +19,10 @@ to dramatically enhance thermal-hydraulic analysis capabilities.  The work will
 entail combining advanced simulations on DOE's exascale computing platforms
 with modern data analysis methods based on reduced-order models (ROMs) that
 effectively compress these first-principle data to provide efficient
-exploratory tools.  We illustrate the project overview in Fig. \ref{fig:sum}
-(left).
+exploratory tools.  These tools have the potential to improve understanding of
+thermal stratification effects, mixed convection, and other critical phenomena
+and can lead to margin reduction and better economics.
+We illustrate the project overview in Fig. \ref{fig:sum}(left).
 \\[0ex]
 \begin{figure}[b!] \centering
     {\setlength{\unitlength}{1.0in} \begin{picture}(6.5,1.700)(0.0,0)
@@ -31,7 +33,8 @@ exploratory tools.  We illustrate the project overview in Fig. \ref{fig:sum}
 (left) Overview of Project with three thrusts: Data Generation,
              Reduced-Order Modeling Development, and Validation/Demonstration.
 (right) Current capabilities: flow-through of full pebble bed
-reactor core in 6 hours on Summit. % \\[-4ex]
+        reactor core in 6 hours on Summit (352K pebbles, 51B grid points, 27648 NVIDIA V100s,
+        0.36 seconds per step).
 \label{fig:sum}}
 \end{figure}
 
@@ -77,7 +80,7 @@ In particular we aim to: \\[-2ex]
 %
    \item \textit{Enable the simulation of large parameter sweeps using
    ROMs developed over a subset of the parameter space.} This approach
-   will allow assessment of uncertainties in system-level approaches
+   will allow assessment of uncertainties in system-level approaches 
    and to develop closures.
 %
    \item \textit{Enable accelerated simulation of transients.}
@@ -86,11 +89,12 @@ In particular we aim to: \\[-2ex]
 \\[-3ex]
 \end{enumerate}
 As a demonstration application we choose the simulation of Sodium Fast Reactor
-(SFR) fuel assemblies under steady-state and transient conditions and extend to upper plenum applications as a stretch goal. \textbf{We
-emphasize that the methods developed will apply to a broad range of advanced
-reactor applications.} To maximize impact, we will integrate the proposed
-multi-scale approaches in the Cardinal \cite{cardinal} framework thus allowing
-their usage in SAM \cite{hu2021}.
+(SFR) fuel assemblies under steady-state and transient conditions and extend to
+upper plenum applications as a stretch goal. 
+\textbf{We emphasize that the methods developed will apply to a broad range of
+advanced reactor applications.} To maximize impact, we will integrate the
+proposed multi-scale approaches in the Cardinal \cite{cardinal} framework thus
+allowing their usage in SAM \cite{hu2021}. 
 
 \input narrative/central
 
@@ -100,34 +104,35 @@ their usage in SAM \cite{hu2021}.
 
 \input narrative/merit
 
-\vspace*{.05in}\noindent \underline{\textbf{Relevance and Outcomes/Impacts}} \\[-2ex]
+\vspace*{-.1in}\noindent \underline{\textbf{Relevance and Outcomes/Impacts}} \\[-2ex]
 \input narrative/relevance
 
-%% • Relevance and Outcomes/Impacts: This section will explain the
-%%   program relevance/priority of the effort to the objectives in the
+%% • Relevance and Outcomes/Impacts: This section will explain the 
+%%   program relevance/priority of the effort to the objectives in the 
 %%   program announcement and the expected outcomes and/or impacts.
 
 
-\vspace*{.05in}\noindent \underline{\textbf{Schedule}} \\[-2ex]
-\input narrative/schedule
+\vspace*{.02in}\noindent \underline{\textbf{Schedule}} \\[-2ex]
+\input narrative/schedule 
 
-\vspace*{.05in}\noindent \underline{\textbf{Milestones and Deliverables}} \\[-2ex]
-\input narrative/milestones
+\vspace*{-.05in}\noindent \underline{\textbf{Milestones and Deliverables}} \\[-3ex]
+\input narrative/milestones 
 
-\vspace*{.05in}\noindent \underline{\textbf{Facilities}}
+\newpage
+\vspace*{-.0in}\noindent \underline{\textbf{Facilities}}
 % • Type/Description of facilities that will be used to execute the
 %   scope (if applicable).
 
 \input narrative/facilities
 
-\vspace*{.05in}\noindent \underline{\textbf{Roles/Responsibilities of
+\vspace*{-.15in}\noindent \underline{\textbf{Roles/Responsibilities of 
 Partnering Organizations}}
 
 \input narrative/coordination
 
 
-\vspace*{.05in}\noindent \underline{\textbf{Unique Challenges}}
+\vspace*{-.02in}\noindent \underline{\textbf{Unique Challenges}}
 % Unique challenges to accomplishing the work and planned mitigations.
 
-\textbf{THESE ARE OLD CHALLENGES}
 \input narrative/uchallenge
+\\[-4ex]

@@ -26,21 +26,22 @@ therefore, must target {\em space-} and/or {\em time-averaged} QOIs such as
 velocity profiles,  turbulent-kinetic energy distributions, and Nusselt
 numbers.  For the same reason, such quantities are also the currency of
 engineering design and thus reasonable measures of the success of a ROM as a
-low-cost analysis tool.  Thus, the {\em objective} of this project is
-prediction of engineering QOIs, rather than prediction of precise 
-trajectories.  This simplified objective is one of the key features that makes
-the problem tractable.
+low-cost analysis tool.  Thus, the objective of this project is prediction of
+engineering QOIs, rather than prediction of precise trajectories.  This
+simplified objective is one of the key features that makes the problem
+tractable.
 
     While our focus will be on mean engineering quantities, we note that the
 time-evolving ROMs {\em also} provide reasonable surrogates for unsteady
 behavior (or they would not be good predictors of the mean) and therefore can
 be used to visualize flows, which is often useful for engineering insight
-(e.g., identifying stagnant and ejected vortices)
-.  We also propose to augment
+(e.g., identifying stagnant and ejected vortices).  We will augment
 qualitative visual analysis of the unsteady behavior with quantitative
 monitoring of the amplitudes, frequencies, and gradients of QOIs at specified
 locations in subsets of the domain, which will help assess potential
 thermal striping, thermal fatigue, and thermal stratification effects.
+We can also use the ROM evolution to drive LES or RANS boundary conditions,
+as discussed in the next subtask.
 
 The ROM for the Navier-Stokes equations starts with a collection of $K$
 snapshots, $\bu^k(\bx) := \bu(\bx,t^k) \in X_0^{\cN}$, corresponding to
@@ -92,47 +93,60 @@ linear system of the form,
 E(\ua^l,Re) \ua^{l+1} &=& \uft (\ua^l,Re),
 \end{eqnarray}
 for each timestep $t^l$ (using a larger timestep size than the FOM).
+It typically takes only minutes on a laptop to run
+(\ref{eq:erom}) for thousands of convective time-units.
+Eq. (\ref{eq:erom}) also illustrates how $Re$ is a free parameter in the ROM.
+% There is no {\em a priori} reason for the value of $Re$ to be the same
+% as used for the snapshot-generating FOM.  (In the NekROM examples, one
+% can adjust $Re$ for flow past a cylinder and for Tollmien-Schlicting
+% waves in a channel to find reasonable agreement for the critical
+% growth/no-growth crictial Reynolds number between the ROM and the FOM.)
 
-For typical turbulence problems, the standard approach is to use
-$K$$\approx$1000 high-fidelity solution snapshots (i.e., full
-velocity/temperature fields) to form $N$$\approx$20--200 basis functions
-through POD or some other low-rank approximation approach.  For relatively
-small $N$ ($<100$), the low-dimensional ODE (\ref{eq:eromd}) can be advanced
-extremely fast---\textbf{in just a few minutes on a laptop it is possible to
-evolve tens-of-thousands of convective time units,} much longer than feasible
-with a FOM, even on an exascale platform, which is one of the reasons that ROMs
-are interesting for long-time transients.  Moreover, it is relatively easy to
-adjust equation parameters to have a nominal pMOR tool.
+% For typical turbulence problems, the standard approach is to use
+% $K$$\approx$1000 high-fidelity solution snapshots (i.e., full
+% velocity/temperature fields) to form $N$$\approx$20--200 basis functions
+% through POD or some other low-rank approximation approach.  For relatively
+% small $N$ ($<100$), the low-dimensional ODE (\ref{eq:eromd}) can be advanced
+% extremely fast---\textbf{in just a few minutes on a laptop it is possible to
+% evolve tens-of-thousands of convective time units,} much longer than feasible
+% with a FOM, even on an exascale platform, which is one of the reasons that ROMs
+% are interesting for long-time transients.  Moreover, it is relatively easy to
+% adjust equation parameters to have a nominal pMOR tool.
 
-There are, however, several challenges to bringing the preceding scenario to fruition.
-The first is to ensure that the ROM can accurately track the quantities
-of interest (QOIs) produced by the FOM, even at the same parameter point.
-Accuracy is by no means assured, particularly for turbulent flows
-where energy is dissipated by small-scale structures that are generally absent
-from POD bases.  Several stabilization strategies are possible, such as Leray
-regularization, in which the advecting field is smoothed \cite{wang2012proper}, 
-or constrained evolution, in which each basis coefficient is constrained
-to the range observed in the projection of the snapshot space onto the bases. 
-\cite{fick18}.  Alternative approaches include modification of the approximation
-space.  For example \cite{akkari19} uses a decomposition of modes
-into distinct sets minimizing the $L^2$ error (for accuracy) and the $\cH^1$
-error (for stability).  In \cite{khodkar2019}, a basis is derived from Green's
-functions approximations.
+There are, however, several challenges to ensuring that (\ref{eq:erom})
+is accurate for turbulent flows, even under the same parametric conditions.
+A primary issue for turbulence is that energy is dissipated by small-scale
+structures that are generally absent from POD bases.  Several stabilization
+strategies are possible, such as Leray regularization, in which the advecting
+field is smoothed \cite{wang2012proper}, or constrained evolution, in which
+each basis coefficient is constrained to the range observed in the projection
+of the snapshot space onto the bases \cite{fick18}.  (To the extent that the
+POD modes are Fourier like, Leray regularization can be implemented simply by
+truncating the sum over $k$ to $k \leq N' < N$ in (\ref{eq:erom}), although
+more sophisticated PDE-based filters can also be developed.) Alternatively,
+one can modify the approximation space.  For example,
+\cite{akkari19} uses a decomposition of modes into distinct sets minimizing the
+$L^2$ error (for accuracy) and the $\cH^1$ error (for stability).  In
+\cite{khodkar2019}, a basis is derived from Green's functions approximations.
 
    Under prior NEUP support, Kaneko \cite{kaneko22a,kaneko22} developed an
 augmented-basis method (ABM) wherein a set of standard POD basis functions,
 $\{\bzeta_i(\bx) \}$,  is augmented with a subset of their nonlinear
-interaction terms, $\{\bzeta_i \cdot \nabla \bzeta_j\}$.  The success of the
-ABM is illustrated in the turbulent pipe flow examples of Fig. \ref{fig:abm},
-which shows that standard POD Galerkin and Leray regularization can converge at
-lower Reynolds numbers $Re$ with a sufficient number of basis functions, $N$,
-but that the required number of basis functions rapidly increases with $Re$.
-Given the $O(N^3)$ costs for the ROM, these methods are limited to relatively
-low $Re$.  The ABM and the constrained approaches, however, perform much better
-because of their stability.  Other QOIs, including Nusselt number, show 
-convergence behaviors similar to the plots of Fig. \ref{fig:abm},
-but the ABM can be overly dissipative at higher $Re$.  \textbf{Understanding the
-overall convergence behavior for ROMs applied to turbulent flows is a major
+interaction terms, $\{\bzeta_i \cdot \nabla \bzeta_j\}$, projected onto
+a divergence-free space.  The success of this
+method is illustrated in the turbulent pipe flow examples of Fig. \ref{fig:abm},
+which shows that the ABM has much lower error at low $N$ than POD Galerkin and
+Leray.  At lower Reynolds numbers, these standard methods {\em can} converge 
+for sufficiently large $N$.  The required number of basis functions, however,
+increases rapidly with $Re$.  Given the $O(N^3)$ costs implied by the rank-3
+$C_{ijk}$ tensor in (\ref{eq:erom}), these methods are limited to relatively
+low $Re$.  The stable ABM and the constrained approaches, however, perform much better,
+even at $N\approx 20$.  Other QOIs, including Nusselt number, show convergence
+behaviors similar to the plots of Fig. \ref{fig:abm}, but the ABM can be overly
+dissipative at higher $Re$.  
+
+\textbf{Understanding the
+underlying convergence behavior for ROMs applied to turbulent flows is a major
 objective of the proposed work.} We will explore this question through
 extensive unit tests such as minimal-channel flows, thermal striping in a
 T-junction, etc.
@@ -173,8 +187,8 @@ $N=10,000$, we cannot observe a transition for $N \leq 200$, but one might
 speculate that it could be found if we take $N$ large enough.  Unfortunately,
 each step of (\ref{eq:eromd}) requires a contraction with the 3rd-order tensor
 $C_{ijk}$, which requires $O(N^3)$ operations and dominates the cost of the
-online (and, potentially, the offline) portion of the ROM.  Mitigation of the
-$O(N^3)$ cost is of primary importance.  Possible solutions include replacing
+online (and, potentially, the offline) portion of the ROM.  \textbf{Mitigation of the
+$O(N^3)$ cost is of primary importance.}  Possible solutions include replacing
 the nonlinear term with an approximation based on the discrete empirical
 interpolation method (DEIM) \cite{deim2010} or replacing the rank-3 tensor
 $C_{ijk}$ with the sum of $R$ rank-1 tensors, which reduces the $O(N^3)$ cost
@@ -183,6 +197,14 @@ implying that one could enrich the approximation space through substantial
 increases in $N$.  (An important technical detail is to ensure that the
 low-rank tensor inherits the skew-symmetry properties that are intrinsic to
 advection operators in closed systems.)
+
+ROMs generally converge faster on small domains, which suggests using
+a domain decomposition strategy with (say) $N'=20$ modes on each of $S$
+subdomains such that $C_{ijk}$ is sparse with $O(SN'^3)$ nonzeros,
+while the number of modes is $N=SN'$.  Such an approach would also
+more readily support convective transport of isolated features than
+would be possible with an (incomplete) modal basis.  We will investigate
+the feasiblity of such an approach for large-domain test cases.
 
 
 
